@@ -52,7 +52,7 @@ docker compose up --build
 https://reto-cp-backend.onrender.com/
 
 ### Enlace de Swagger
-https://enlace
+https://reto-cp-backend.onrender.com/api/docs
 
 ## Referencia al archivo postman y enviroment
 
