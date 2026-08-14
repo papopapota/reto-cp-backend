@@ -1,13 +1,17 @@
 services:
-  # app:
-  #   build: .
-  #   ports:
-  #     - "3000:3000"
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     db:
-  #       condition: service_healthy
+  app:
+    container_name: reto-cp-backend-dev
+    build:
+      context: .
+      dockerfile: dockerfile.dev
+    restart: always
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
   db:
     image: mongo:6.0
     container_name: mongo-dev
