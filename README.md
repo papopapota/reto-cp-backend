@@ -1,98 +1,88 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Reto Cine Planet Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+API REST para la gestión de reservas y operaciones del sistema de Cineplanet, desarrollada como solución al reto técnico de backend.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 1. Stack Tecnológico
+### Técnologias Principales
+- **Framework:** NestJS
+- **Lenguaje:** TypeScript
+- **ORM / ODM:** Prisma
+- **Base de Datos:** MongoDB
 
-## Description
+### Tecnologías Secundarias y Librerías
+- **Testing:** Jest
+- **Validación de Entorno:** Joi / Dotenv
+- **Seguridad y Autenticación:** JWT (JSON Web Tokens) y Bcrypt
+- **Documentación de API:** Swagger (OpenAPI 3.0 via `@nestjs/swagger`)
+- **Contenedores:** Docker y Docker Compose
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 2. Instrucciones de Ejecución Local
 
-## Project setup
+### Prerrequisitos
+- Docker y Docker Compose instalados.
+- Node.js (opcional, en caso de ejecución sin contenedor).
 
+### Pasos para levantar el entorno
+1. Clonar el repositorio y ubicarse en la raíz del proyecto.
+2. Crear el archivo de variables de entorno a partir de la plantilla:
+   ```bash
+   cp .env.template .env
+   ```
+3. Ajustar los valores en el archivo `.env` en caso de ser necesario.
+4. Levantar la aplicación y la base de datos con Docker Compose:
 ```bash
-$ pnpm install
+docker compose up --build
+
 ```
+5. La API estará disponible en `http://localhost:3000` (o el puerto configurado en `PORT`).
 
-## Compile and run the project
+## 3. Variables de Entorno
 
-```bash
-# development
-$ pnpm run start
+| Variable | Descripción | Valor por defecto / Ejemplo |
+| --- | --- | --- |
+| `PORT` | Puerto en el que se ejecuta la aplicación | `3000` |
+| `ENVIRONMENT` | Entorno de ejecución (`development`, `production`, `test`) | `development` |
+| `DATABASE_URL` | URI de conexión a la base de datos MongoDB | `mongodb://root:root@localhost:27017/reto-cp-backend?authSource=admin` |
+| `JWT_SECRET` | Clave secreta para la firma y validación de tokens JWT | `tu_clave_secreta_aqui` |
 
-# watch mode
-$ pnpm run start:dev
 
-# production mode
-$ pnpm run start:prod
-```
+## 4. Despliegue y Documentación
 
-## Run tests
+### URL de despliegue público
+https://reto-cp-backend.onrender.com/
 
-```bash
-# unit tests
-$ pnpm run test
+### Enlace de Swagger
+https://enlace
 
-# e2e tests
-$ pnpm run test:e2e
+## Referencia al archivo postman y enviroment
 
-# test coverage
-$ pnpm run test:cov
-```
+## 6. Respuestas al Escenario de Escalabilidad (Sección 4.1)
 
-## Deployment
+### 1. ¿Cómo garantizarías que no se vendan más asientos de los disponibles bajo alta concurrencia?
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+* **Control de stock en memoria distribuida (Redis):** Se consulta el inventario en Redis; si no existe, se carga desde la base de datos. Para decrementos de stock concurrentes se utilizan scripts en Lua, los cuales se ejecutan de manera atómica en un solo hilo en Redis, eliminando condiciones de carrera (*race conditions*) antes de tocar la base de datos.
+* **Bloqueo temporal de asientos (*Distributed Lock / TTL*):** Al seleccionar un asiento, se genera una clave temporal en Redis (ej. `seat:{id}:lock`) asignada al `userId` con un TTL de 5 a 10 minutos. Si la clave ya existe, el asiento se rechaza de inmediato. Si el pago no se confirma antes de expirar el TTL, la clave se destruye y el asiento queda libre de forma automática.
+* **Operaciones atómicas a nivel de base de datos:** Para la persistencia final, se ejecutan operaciones de actualización condicional atómica (ej. `findAndModify` / `updateOne` con filtro de estado `DISPONIBLE`), asegurando que solo una transacción consolide el cambio de estado.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 2. ¿Qué cambios harías a la arquitectura actual para soportar esta carga sin interrupciones?
 
-```bash
-$ pnpm install -g @nestjs/mau
-$ mau deploy
-```
+* **Desacoplamiento asíncrono con arquitectura orientada a eventos:** Reemplazar llamadas HTTP síncronas pesadas mediante colas de mensajería (ej. RabbitMQ, Apache Kafka o AWS SQS). Esto permite amortiguar picos de tráfico y procesar las compras mediante *consumers* a un ritmo controlado.
+* **Estrategia de caché multinivel:** Implementar caché distribuida en Redis para consultas de solo lectura de alta frecuencia (cartelera, cines, horarios), reduciendo drásticamente la carga de lectura en la base de datos.
+* **Escalabilidad horizontal y orquestación:** Empaquetar los servicios en contenedores y desplegarlos en un orquestador (Kubernetes / ECS) configurando métricas de autoescalado horizontal (HPA) basadas en uso de CPU y volumen de peticiones por segundo.
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 3. ¿Qué tecnologías o patrones adicionales introducirías?
 
-## Resources
+* **Idempotency Keys:** Encabezados de idempotencia en peticiones de reserva y pasarela de pagos para evitar cobros o reservas duplicadas en reintentos de red.
+* **Patrón Circuit Breaker:** Implementar mecanismos de tolerancia a fallos para aislar servicios externos inestables (como pasarelas de pago o proveedores de facturación).
+* **Descomposición en Microservicios:** Separar los módulos de alta demanda (como el motor de reservas y pagos) de los módulos de baja demanda (catálogo y administración).
+* **Patrón Saga:** Orquestar transacciones distribuidas compensatorias entre servicios (reserva de asiento, cobro y emisión de boleto) para mantener la consistencia eventual sin recurrir a bloqueos pesados en la base de datos.
 
-Check out a few resources that may come in handy when working with NestJS:
+---
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
 
-## Support
+## 7. Arquitectura del Sistema
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Para conocer en detalle el diseño de componentes, capas, justificación técnica de decisiones y diagramas del sistema, consulta el documento:
 
-## Stay in touch
+* [ARCHITECTURE.md](./ARCHITECTURE.md)
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
