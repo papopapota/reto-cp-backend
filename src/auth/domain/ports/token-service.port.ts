@@ -1,0 +1,5 @@
+export interface TokenServicePort {
+    generateToken(payload: { userId: string, rol: string }): Promise<string>;
+}
+
+export const TOKEN_SERVICE_PORT = Symbol('TOKEN_SERVICE_PORT');
