@@ -1,16 +1,20 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { TokenServicePort } from "src/auth/domain/ports";
+import { TokenPayload, TokenServicePort } from "src/auth/domain/ports";
 
 @Injectable()
 export class JwtTokenServiceAdapter implements TokenServicePort {
     constructor(
         private readonly jwtService: JwtService
-    ){}
-    verifyToken(token: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
+    ) { }
+    async verifyToken(token: string): Promise<TokenPayload> {
+        const payload = await this.jwtService.verifyAsync(token);
+        if (!payload || !payload.userId || !payload.rol) {
+            throw new UnauthorizedException('Token inválido');
+        }
+        return payload;
     }
-    generateToken(payload: { userId: string; rol: string; }): Promise<string> {
+    generateToken(payload: TokenPayload): Promise<string> {
         return this.jwtService.signAsync(payload);
     }
 }
