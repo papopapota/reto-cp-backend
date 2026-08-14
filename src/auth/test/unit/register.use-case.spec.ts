@@ -1,5 +1,6 @@
 import { Test } from "@nestjs/testing";
 import { RegisterUseCase } from "src/auth/application/use-case";
+import { UserAlreadyExistException } from "src/auth/domain/exceptions";
 import { HASH_SERVICE_PORT, HashServicePort, TOKEN_SERVICE_PORT } from "src/auth/domain/ports";
 import { HashServiceMock } from "src/auth/mock";
 import { RegisterDtoStub } from "src/auth/stub";
@@ -65,12 +66,17 @@ describe('RegisterUseCase', () => {
         });
     });
     describe('when the user already exists, then it should', () => {
-        let result: any;
+        let error: any;
         beforeEach(async () => {
             userRepository.findByEmail.mockResolvedValue(UserStub());
+            try {
+                await useCase.execute(RegisterDtoStub());
+            } catch (e) {
+                error = e;
+            }
         });
         test('throw a UserAlreadyExistException', async () => {
-            expect(useCase.execute(RegisterDtoStub())).rejects.toThrow(`Usuario con el email ${RegisterDtoStub().email} ya existe`);
+            expect(error).toBeInstanceOf(UserAlreadyExistException);
         });
         test('not call the hash service', () => {
             expect(hashService.hash).not.toHaveBeenCalled();
