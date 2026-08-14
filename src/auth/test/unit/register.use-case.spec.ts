@@ -58,7 +58,7 @@ describe('RegisterUseCase', () => {
                 password: 'hashedPassword'
             }));
         });
-        test('return the access token and user', async () => {
+        test('return the user', async () => {
             expect(result).toEqual(userWithoutPassword);
         });
         test('do not return the password', async () => {
