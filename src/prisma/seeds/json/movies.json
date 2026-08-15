@@ -1,0 +1,86 @@
+[
+    {
+        "title": "Dragon Ball Super: Broly",
+        "synopsis": "Goku y Vegeta se enfrentan a Broly, un poderoso guerrero saiyajin con un nivel de poder destructivo e incontrolable.",
+        "duration": 100,
+        "genre": "ACTION",
+        "rating": "PG"
+    },
+    {
+        "title": "Interstellar",
+        "synopsis": "Un equipo de exploradores viaja a través de un agujero de gusano en el espacio en un intento desesperado por asegurar la supervivencia de la humanidad.",
+        "duration": 169,
+        "genre": "SCI_FI",
+        "rating": "PG_13"
+    },
+    {
+        "title": "The Dark Knight",
+        "synopsis": "Batman enfrenta su mayor desafío psicológico y físico cuando el Joker desata el caos y la anarquía en Gotham City.",
+        "duration": 152,
+        "genre": "ACTION",
+        "rating": "PG_13"
+    },
+    {
+        "title": "Spirited Away",
+        "synopsis": "Una niña de diez años queda atrapada en un mundo misterioso habitado por espíritus, monstruos y hechiceros tras la transformación de sus padres.",
+        "duration": 125,
+        "genre": "ANIMATION",
+        "rating": "PG"
+    },
+    {
+        "title": "Pulp Fiction",
+        "synopsis": "Las vidas de dos asesinos a sueldo, un boxeador y la esposa de un gánster se entrelazan en cuatro historias de violencia y redención.",
+        "duration": 154,
+        "genre": "DOCUMENTARY",
+        "rating": "R"
+    },
+    {
+        "title": "The Matrix",
+        "synopsis": "Un hacker descubre la verdadera naturaleza de la realidad y su papel central en la guerra contra los controladores del mundo simulado.",
+        "duration": 136,
+        "genre": "SCI_FI",
+        "rating": "R"
+    },
+    {
+        "title": "Inception",
+        "synopsis": "Un ladron habilidoso en el arte de la extraccion debe realizar la tarea inversa de implantar una idea en la mente de un objetivo corporativo.",
+        "duration": 148,
+        "genre": "SCI_FI",
+        "rating": "PG_13"
+    },
+    {
+        "title": "Gladiator",
+        "synopsis": "Un antiguo general romano traicionado busca venganza contra el corrupto emperador que asesino a su familia y lo envio a la esclavitud.",
+        "duration": 155,
+        "genre": "ACTION",
+        "rating": "R"
+    },
+    {
+        "title": "Spider-Man: Into the Spider-Verse",
+        "synopsis": "El joven Miles Morales se convierte en el nuevo Spider-Man y une fuerzas con versiones de otras dimensiones para detener una amenaza global.",
+        "duration": 117,
+        "genre": "ANIMATION",
+        "rating": "PG"
+    },
+    {
+        "title": "The Lord of the Rings: The Fellowship of the Ring",
+        "synopsis": "Un timido hobbit y ocho companeros emprenden un peligroso viaje para destruir un anillo poderoso y salvar la Tierra Media del Señor Oscuro.",
+        "duration": 178,
+        "genre": "FANTASY",
+        "rating": "PG_13"
+    },
+    {
+        "title": "Fight Club",
+        "synopsis": "Un oficinista insomne y un fabricante de jabones carismatico forman un club de lucha clandestino que evoluciona hacia algo mucho mas peligroso.",
+        "duration": 139,
+        "genre": "DRAMA",
+        "rating": "R"
+    },
+    {
+        "title": "Toy Story",
+        "synopsis": "Los juguetes de un nino cobran vida en secreto y ven su mundo alterado con la llegada de una nueva y moderna figura de accion espacial.",
+        "duration": 81,
+        "genre": "ANIMATION",
+        "rating": "G"
+    }
+]
