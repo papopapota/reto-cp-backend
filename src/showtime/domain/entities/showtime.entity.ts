@@ -14,7 +14,7 @@ export interface ShowtimeProps {
 
 export class Showtime {
     private readonly id: string;
-    private movieId: string;
+    private readonly movieId: string;
     private room: string;
     private dateTime: Date;
     private price: number;
