@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 
 export type UserProps = {
     id?: string;
@@ -17,7 +18,7 @@ export class User {
     constructor(
         props: UserProps
     ) {
-        this.id = props.id;
+        this.id = props.id ?? randomUUID();
         this.email = props.email;
         this.password = props.password;
         this.createdAt = props.createdAt ?? new Date();
