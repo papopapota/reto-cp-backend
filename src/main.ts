@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { DomainExceptionFilter } from './common/infrastructure/filters';
+import { DomainExceptionFilter, HttpExceptionFilter } from './common/infrastructure/filters';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
@@ -14,6 +14,7 @@ async function bootstrap() {
   }));
   app.useGlobalFilters(
     new DomainExceptionFilter(),
+    new HttpExceptionFilter()
   );
   const config = new DocumentBuilder()
   .setTitle('API Documentation')
