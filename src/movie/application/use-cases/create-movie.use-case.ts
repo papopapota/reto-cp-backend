@@ -9,7 +9,7 @@ export class CreateMovieUseCase {
         private readonly movieRepository: MovieRepositoryPort
     ) {
     }
-    execute(
+    async execute(
         dto: CreateMovieDto
     ) {
         const movie = Movie.create({
@@ -19,8 +19,9 @@ export class CreateMovieUseCase {
             genre: dto.genre,
             rating: dto.rating
         });
-        return this.movieRepository.create(
+        await this.movieRepository.create(
             movie
         );
+        return movie;
     }
 }
