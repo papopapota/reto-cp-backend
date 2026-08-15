@@ -1,14 +1,53 @@
-import { MovieRepositoryPort } from "src/movie/application/ports";
 import { Movie } from "src/movie/domain/entities";
 import { PrismaService } from "src/prisma/prisma.service";
 import { MovieMapper } from "../mappers";
+import { Injectable } from "@nestjs/common";
+import { MovieQuery, MovieRepositoryPort, PaginatedResult } from "src/movie/domain/ports";
+import { MovieGenre, Prisma } from "@prisma/client";
 
+@Injectable()
 export class PrismaMovieRepositoryAdapter implements MovieRepositoryPort {
 
     constructor(
         private prisma: PrismaService
     ) { }
+    async findAll(
+        query: MovieQuery
+    ): Promise<PaginatedResult<Movie>> {
+        const { page, limit, genre, rating, sortBy, sortOrder } = query;
+        const prismaGenre = MovieMapper.genreToPersistence(genre as any);
+        const prismaRating = MovieMapper.ratingToPersistence(rating as any);
 
+        const skip = (page - 1) * limit;
+        const where: Prisma.MovieModelWhereInput = {
+            ...(prismaGenre ? { genre: prismaGenre } : {}),
+            ...(prismaRating ? { rating: prismaRating } : {}),
+        };
+        const orderBy: Prisma.MovieModelOrderByWithRelationInput = {
+            [sortBy as keyof Prisma.MovieModelOrderByWithRelationInput]: sortOrder,
+        };
+        const [movies, total] = await this.prisma.$transaction([
+            this.prisma.movieModel.findMany({
+                where,
+                orderBy,
+                skip,
+                take: limit,
+            }),
+            this.prisma.movieModel.count({ where }),
+        ]);
+
+        return {
+            data: movies.map((movie) => MovieMapper.toDomain(movie)),
+            meta: {
+                total,
+                page,
+                limit,
+                totalPages: Math.ceil(total / limit),
+                hasNextPage: page * limit < total,
+                hasPrevPage: page > 1,
+            }
+        };
+    }
     async create(movie: Movie): Promise<Movie> {
         const prismaMovie = MovieMapper.toPersistence(movie);
         return this.prisma.movieModel.create({ data: prismaMovie }).then((createdMovie) => {
