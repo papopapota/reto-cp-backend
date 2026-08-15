@@ -35,17 +35,17 @@ export class Movie {
         this.updatedAt = props.updatedAt ?? now;
     }
 
-    create(
+    static create(
         props: Omit<MovieProps, 'id' | 'createdAt' | 'updatedAt' | 'deletedAt'>
     ) {
-        this.title = props.title;
-        this.synopsis = props.synopsis;
-        this.duration = props.duration;
-        this.genre = props.genre;
-        this.rating = props.rating;
-        const now = new Date();
-        this.createdAt = now;
-        this.updatedAt = now;
+        return new Movie({
+            title: props.title,
+            synopsis: props.synopsis,
+            duration: props.duration,
+            genre: props.genre,
+            rating: props.rating,
+            deletedAt: null
+        });
     }
 
     isDeleted(): boolean {
