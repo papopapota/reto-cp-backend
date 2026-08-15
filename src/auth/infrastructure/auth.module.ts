@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { HASH_SERVICE_PORT, TOKEN_SERVICE_PORT } from '../domain/ports';
 import { BcryptHashServiceAdapter, JwtTokenServiceAdapter } from './adapters';
 import { LoginUseCase, RegisterUseCase } from '../application/use-case';
@@ -6,7 +6,7 @@ import { UserModule } from 'src/user/infrastructure/user.module';
 import { AuthController } from './controllers';
 import { JwtModule } from '@nestjs/jwt';
 import { envs } from 'src/config/envs';
-
+@Global()
 @Module({
     providers: [
         {
@@ -27,7 +27,9 @@ import { envs } from 'src/config/envs';
             signOptions: { expiresIn: '1h' },
         })
     ],
-    exports: [],
+    exports: [
+        TOKEN_SERVICE_PORT,
+    ],
     controllers: [
         AuthController
     ],
