@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MovieController } from './controllers';
-import { GetMoviesUseCase } from '../application/use-cases';
+import { GetAllMoviesUseCase } from '../application/use-cases';
 import { PrismaMovieRepositoryAdapter } from './adapters';
 import { MOVIE_REPOSITORY_PORT } from '../domain/ports';
 
@@ -10,7 +10,7 @@ import { MOVIE_REPOSITORY_PORT } from '../domain/ports';
       provide: MOVIE_REPOSITORY_PORT,
       useClass: PrismaMovieRepositoryAdapter
     },
-    GetMoviesUseCase
+    GetAllMoviesUseCase
   ],
   imports: [
   ],
