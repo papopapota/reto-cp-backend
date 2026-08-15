@@ -1,13 +1,16 @@
-import { Body, Controller, Delete, Get, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/infrastructure/guards';
 import { CreateMovieDto, GetMoviesQueryDto } from 'src/movie/application/dtos';
-import { GetAllMoviesUseCase } from 'src/movie/application/use-cases';
+import { CreateMovieUseCase, GetAllMoviesUseCase } from 'src/movie/application/use-cases';
 
 @Controller('movies')
 export class MovieController {
     constructor(
         private readonly getMoviesUseCase: GetAllMoviesUseCase,
+        private readonly createMovieUseCase: CreateMovieUseCase
     ) { }
+
+    @HttpCode(HttpStatus.OK)
     @Get()
     getMovies(
         @Query() query: GetMoviesQueryDto
@@ -22,25 +25,29 @@ export class MovieController {
         });
     }
 
+    @HttpCode(HttpStatus.OK)
     @Get(':id')
     getMovieById() {
         return "getMovieById";
     }
 
+    @HttpCode(HttpStatus.CREATED)
     @UseGuards(JwtAuthGuard)
     @Post()
     createMovie(
         @Body() dto: CreateMovieDto
     ) {
-        return `movie created with title: ${dto.title}, synopsis: ${dto.synopsis}, duration: ${dto.duration}, genre: ${dto.genre}, rating: ${dto.rating}`;
+        return this.createMovieUseCase.execute(dto);
     }
 
+    @HttpCode(HttpStatus.OK)
     @UseGuards(JwtAuthGuard)
     @Put(':id')
     updateMovie() {
         return "updateMovie";
     }
-
+    
+    @HttpCode(HttpStatus.OK)
     @UseGuards(JwtAuthGuard)
     @Delete(':id')
     deleteMovie() {

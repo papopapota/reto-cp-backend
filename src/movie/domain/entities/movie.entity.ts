@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import { MovieGenreEnum, MovieRatingEnum } from "../enums";
 export interface MovieProps {
     id?: string;
@@ -23,7 +24,7 @@ export class Movie {
     constructor(
         props: MovieProps
     ) {
-        this.id = props.id;
+        this.id = props.id ?? randomUUID();
         this.title = props.title;
         this.synopsis = props.synopsis;
         this.duration = props.duration;

@@ -5,8 +5,16 @@ export class MovieRepositoryMock implements MovieRepositoryPort {
     public movies: Movie[] = [];
 
     async create(movie: Movie): Promise<Movie> {
-        this.movies.push(movie);
-        return Promise.resolve(movie);
+        const newMovie = new Movie({
+            title: movie.getTitle(),
+            synopsis: movie.getSynopsis(),
+            duration: movie.getDuration(),
+            genre: movie.getGenre(),
+            rating: movie.getRating(),
+            deletedAt: null,
+        });
+        this.movies.push(newMovie);
+        return Promise.resolve(newMovie);
     }
 
     async findById(id: string): Promise<Movie | null> {
