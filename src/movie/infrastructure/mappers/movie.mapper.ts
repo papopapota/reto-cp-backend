@@ -32,4 +32,17 @@ export class MovieMapper {
             updatedAt: movie.getUpdatedAt()!
         };
     }
+    static genreToPersistence(genre: MovieGenreEnum): MovieGenre {
+        return MovieGenre[genre as keyof typeof MovieGenre];
+    }
+    static ratingToPersistence(rating: MovieRatingEnum): MovieRating {
+        return MovieRating[rating as keyof typeof MovieRating];
+    }
+
+    static genreToDomain(genre: MovieGenre): MovieGenreEnum {
+        return MovieGenreEnum[genre as keyof typeof MovieGenreEnum];
+    }
+    static ratingToDomain(rating: MovieRating): MovieRatingEnum {
+        return MovieRatingEnum[rating as keyof typeof MovieRatingEnum];
+    }
 }
