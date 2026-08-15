@@ -22,3 +22,38 @@ model UserModel {
 
   @@map("users")
 }
+
+model MovieModel {
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  synopsis    String
+  duration    Int
+  genre       MovieGenre
+  rating      MovieRating
+  deletedAt   DateTime?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@map("movies")
+}
+
+enum MovieGenre {
+  ACTION
+  COMEDY
+  DRAMA
+  HORROR
+  SCI_FI
+  THRILLER
+  ANIMATION
+  DOCUMENTARY
+  ROMANCE
+  FANTASY
+}
+
+enum MovieRating {
+  G // Para todos los públicos
+  PG // Guía paternal sugerida
+  PG_13 // Guía estricta para menores de 13
+  R // Restringido (menores de 17 con adulto)
+  NC_17 // Solo adultos (18+)
+}
