@@ -13,30 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model UserModel {
-  id        String    @id @default(uuid()) @map("_id")
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("users")
-}
-
-model MovieModel {
-  id        String    @id @default(uuid())  @map("_id")
-  title       String
-  synopsis    String
-  duration    Int
-  genre       MovieGenre
-  rating      MovieRating
-  deletedAt   DateTime?
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-
-  @@map("movies")
-}
-
 enum MovieGenre {
   ACTION
   COMEDY
@@ -56,4 +32,47 @@ enum MovieRating {
   PG_13 // Guía estricta para menores de 13
   R // Restringido (menores de 17 con adulto)
   NC_17 // Solo adultos (18+)
+}
+
+model UserModel {
+  id        String   @id @default(uuid()) @map("_id")
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model MovieModel {
+  id        String      @id @default(uuid()) @map("_id")
+  title     String
+  synopsis  String
+  duration  Int
+  genre     MovieGenre
+  rating    MovieRating
+  deletedAt DateTime?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  showtimes ShowtimeModel[]
+
+  @@map("movies")
+}
+
+model ShowtimeModel {
+  id             String    @id @default(uuid()) @map("_id")
+  room           String
+  dateTime       DateTime
+  price          Float
+  totalSeats     Int
+  availableSeats Int
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  deletedAt      DateTime?
+
+  movieModel   MovieModel? @relation(fields: [movieModelId], references: [id])
+  movieModelId String?
+
+  @@map("showtimes")
 }
