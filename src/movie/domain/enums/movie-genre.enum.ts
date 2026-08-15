@@ -1,0 +1,9 @@
+export enum MovieGenreEnum {
+    ACTION = 'ACTION',
+    ADVENTURE = 'ADVENTURE',
+    COMEDY = 'COMEDY',
+    DRAMA = 'DRAMA',
+    HORROR = 'HORROR',
+    ROMANCE = 'ROMANCE',
+    SCIENCE_FICTION = 'SCIENCE_FICTION'
+}
