@@ -100,6 +100,9 @@ export class Movie {
     getDeletedAt(): Date | null {
         return this.deletedAt;
     }
+    setDeletedAt(): void {
+        this.deletedAt = new Date();
+    }
 
     getCreatedAt(): Date | undefined {
         return this.createdAt;
