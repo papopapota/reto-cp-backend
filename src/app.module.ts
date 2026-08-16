@@ -16,7 +16,6 @@ import { ShowtimeModule } from './showtime/infrastructure/showtime.module';
     ShowtimeModule
   ],
   controllers: [
-
   ],
   providers: [],
 })
