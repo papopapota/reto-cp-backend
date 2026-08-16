@@ -1,7 +1,7 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseUUIDPipe, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/infrastructure/guards';
 import { CreateMovieDto, GetMoviesQueryDto, UpdateMovieDto } from 'src/movie/application/dtos';
-import { CreateMovieUseCase, GetAllMoviesUseCase, GetMovieWithShowtimeUseCase, UpdateMovieUseCase } from 'src/movie/application/use-cases';
+import { CreateMovieUseCase, GetAllMoviesUseCase, GetMovieWithShowtimeUseCase, DeleteMovieUseCase, UpdateMovieUseCase } from 'src/movie/application/use-cases';
 
 @Controller('movies')
 export class MovieController {
@@ -9,7 +9,8 @@ export class MovieController {
         private readonly getMoviesUseCase: GetAllMoviesUseCase,
         private readonly getMovieWithShowtimeUseCase: GetMovieWithShowtimeUseCase,
         private readonly createMovieUseCase: CreateMovieUseCase,
-        private readonly updateMovieUseCase: UpdateMovieUseCase
+        private readonly updateMovieUseCase: UpdateMovieUseCase,
+        private readonly deleteMovieUseCase: DeleteMovieUseCase
     ) { }
 
     @HttpCode(HttpStatus.OK)
@@ -30,7 +31,7 @@ export class MovieController {
     @HttpCode(HttpStatus.OK)
     @Get(':id')
     getMovieById(
-        @Param('id') id: string
+        @Param('id', ParseUUIDPipe) id: string
     ) {
         return this.getMovieWithShowtimeUseCase.execute(id);
     }
@@ -48,7 +49,7 @@ export class MovieController {
     @UseGuards(JwtAuthGuard)
     @Put(':id')
     updateMovie(
-        @Param('id') id: string,
+        @Param('id', ParseUUIDPipe) id: string,
         @Body() dto: UpdateMovieDto
     ) {
         return this.updateMovieUseCase.execute(id, dto);
@@ -57,7 +58,9 @@ export class MovieController {
     @HttpCode(HttpStatus.OK)
     @UseGuards(JwtAuthGuard)
     @Delete(':id')
-    deleteMovie() {
-        return "deleteMovie";
+    deleteMovie(
+        @Param('id', ParseUUIDPipe) id: string,
+    ) {
+        return this.deleteMovieUseCase.execute(id);
     }
 }
