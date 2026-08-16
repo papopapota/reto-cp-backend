@@ -5,6 +5,7 @@ import { CommonModule } from './common/common.module';
 import { UserModule } from './user/infrastructure/user.module';
 import { MovieModule } from './movie/infrastructure/movie.module';
 import { ShowtimeModule } from './showtime/infrastructure/showtime.module';
+import { BookingModule } from './booking/infrastructure/booking.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { ShowtimeModule } from './showtime/infrastructure/showtime.module';
     CommonModule,
     UserModule,
     MovieModule,
-    ShowtimeModule
+    ShowtimeModule,
+    BookingModule
   ],
   controllers: [
   ],
