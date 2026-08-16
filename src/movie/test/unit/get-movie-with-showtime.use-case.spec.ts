@@ -1,8 +1,8 @@
 import { Test } from "@nestjs/testing";
-import { GetAllMoviesUseCase, GetMovieWithShowtimeUseCase } from "src/movie/application/use-cases";
+import { GetMovieWithShowtimeUseCase } from "src/movie/application/use-cases";
 import { Movie } from "src/movie/domain/entities";
 import { MovieNotFoundException } from "src/movie/domain/exceptions";
-import { MOVIE_REPOSITORY_PORT, MovieRepositoryPort, PaginatedResult } from "src/movie/domain/ports";
+import { MOVIE_REPOSITORY_PORT, MovieRepositoryPort } from "src/movie/domain/ports";
 import { MovieRepositoryMock } from "src/movie/mock";
 import { MovieQueryStub } from "src/movie/stub";
 import movieJson from "src/prisma/seeds/json/movies.json";
@@ -83,7 +83,6 @@ describe('GetMovieWithShowtimeUseCase', () => {
                 await showtimeRepository.create(showtime);
             }
         });
-
     }
 
     describe('when is called, then it should', () => {

@@ -1,8 +1,8 @@
-import { Movie } from "src/movie/domain/entities";
+import { Movie, MovieProps } from "src/movie/domain/entities";
 import { PrismaService } from "src/prisma/prisma.service";
 import { MovieMapper } from "../mappers";
 import { Injectable } from "@nestjs/common";
-import { MovieQuery, MovieRepositoryPort, PaginatedResult } from "src/movie/domain/ports";
+import { MovieQuery, MovieRepositoryPort, PaginatedResult, UpdateMovieData } from "src/movie/domain/ports";
 import { MovieGenre, Prisma } from "@prisma/client";
 
 @Injectable()
@@ -54,9 +54,12 @@ export class PrismaMovieRepositoryAdapter implements MovieRepositoryPort {
             return MovieMapper.toDomain(createdMovie);
         });
     }
-    async update(id: string, movie: Partial<Movie>): Promise<void> {
-        const prismaMovie = MovieMapper.toPersistence(movie as Movie);
-        return this.prisma.movieModel.update({ where: { id }, data: prismaMovie }).then(() => { });
+    async update(id: string, updateMovieData: UpdateMovieData): Promise<Movie> {
+        const cleanData = Object.fromEntries(
+            Object.entries(updateMovieData).filter(([_, value]) => value !== undefined)
+        );
+        const prismaUpdatedMovie = this.prisma.movieModel.update({ where: { id }, data: {...cleanData, updatedAt: new Date() } });
+        return MovieMapper.toDomain(await prismaUpdatedMovie);
     }
     async findById(id: string): Promise<Movie | null> {
         return this.prisma.movieModel.findUnique({ where: { id } }).then((movie) => {

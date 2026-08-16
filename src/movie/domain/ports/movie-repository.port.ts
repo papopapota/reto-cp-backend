@@ -1,4 +1,4 @@
-import { Movie } from "src/movie/domain/entities";
+import { Movie, MovieProps } from "src/movie/domain/entities";
 import { MovieGenreEnum, MovieRatingEnum } from "../enums";
 
 export interface MovieQuery {
@@ -21,13 +21,16 @@ export interface PaginatedResult<T> {
     hasPrevPage: boolean;
   };
 }
+export type UpdateMovieData = Partial<
+  Pick<MovieProps, "title" | "synopsis" | "duration" | "genre" | "rating">
+>;
 
 export interface MovieRepositoryPort {
-    create(movie: Movie): Promise<Movie>;
-    update(id: string, movie: Partial<Movie>): Promise<void>;
-    findAll(query: MovieQuery): Promise<PaginatedResult<Movie>>;
-    findById(id: string): Promise<Movie | null>;
-    delete(id: string): Promise<void>;
+  create(movie: Movie): Promise<Movie>;
+  update(id: string, updateMovieData: UpdateMovieData): Promise<Movie>;
+  findAll(query: MovieQuery): Promise<PaginatedResult<Movie>>;
+  findById(id: string): Promise<Movie | null>;
+  delete(id: string): Promise<void>;
 }
 
 export const MOVIE_REPOSITORY_PORT = Symbol('MOVIE_REPOSITORY_PORT');
