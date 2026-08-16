@@ -35,7 +35,10 @@ docker compose up --build
 
 ```
 5. La API estará disponible en `http://localhost:3000` (o el puerto configurado en `PORT`).
-
+6. ejecutar el comando para repoblar la db
+```
+   pnpm exec prisma db seed
+```
 ## 3. Variables de Entorno
 
 | Variable | Descripción | Valor por defecto / Ejemplo |
