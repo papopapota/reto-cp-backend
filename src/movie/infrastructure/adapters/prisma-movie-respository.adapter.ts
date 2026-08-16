@@ -22,6 +22,10 @@ export class PrismaMovieRepositoryAdapter implements MovieRepositoryPort {
         const where: Prisma.MovieModelWhereInput = {
             ...(prismaGenre ? { genre: prismaGenre } : {}),
             ...(prismaRating ? { rating: prismaRating } : {}),
+            OR: [
+                { deletedAt: { isSet: false } },
+                { deletedAt: null }
+            ]
         };
         const orderBy: Prisma.MovieModelOrderByWithRelationInput = {
             [sortBy as keyof Prisma.MovieModelOrderByWithRelationInput]: sortOrder,
@@ -58,16 +62,26 @@ export class PrismaMovieRepositoryAdapter implements MovieRepositoryPort {
         const cleanData = Object.fromEntries(
             Object.entries(updateMovieData).filter(([_, value]) => value !== undefined)
         );
-        const prismaUpdatedMovie = this.prisma.movieModel.update({ where: { id }, data: {...cleanData, updatedAt: new Date() } });
+        const prismaUpdatedMovie = this.prisma.movieModel.update({ where: { id }, data: { ...cleanData, updatedAt: new Date() } });
         return MovieMapper.toDomain(await prismaUpdatedMovie);
     }
     async findById(id: string): Promise<Movie | null> {
-        return this.prisma.movieModel.findUnique({ where: { id } }).then((movie) => {
+        return this.prisma.movieModel.findUnique(
+            {
+                where: {
+                    id,
+                    OR: [
+                        { deletedAt: { isSet: false } },
+                        { deletedAt: null }
+                    ]
+                }
+            }
+        ).then((movie) => {
             return movie ? MovieMapper.toDomain(movie) : null;
         });
     }
     async delete(id: string): Promise<void> {
-        return this.prisma.movieModel.delete({ where: { id } }).then(() => { });
+        await this.prisma.movieModel.update({ where: { id }, data: { deletedAt: new Date() } });
     }
 
 }

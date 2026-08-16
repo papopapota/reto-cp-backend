@@ -18,7 +18,7 @@ export class MovieRepositoryMock implements MovieRepositoryPort {
     }
 
     async findById(id: string): Promise<Movie | null> {
-        return this.movies.find((m) => m.getId() === id) ?? null;
+        return this.movies.find((m) => m.getId() === id && !m.getDeletedAt()) ?? null;
     }
 
     async update(id: string, updateMovieData: UpdateMovieData): Promise<Movie> {
@@ -32,7 +32,12 @@ export class MovieRepositoryMock implements MovieRepositoryPort {
     }
 
     async delete(id: string): Promise<void> {
-        this.movies = this.movies.filter((m) => m.getId() !== id);
+        this.movies = this.movies.map((m) => {
+            if (m.getId() === id) {
+                m.setDeletedAt();
+            }
+            return m;
+        });
     }
 
     async findAll(query: MovieQuery): Promise<PaginatedResult<Movie>> {
@@ -49,6 +54,7 @@ export class MovieRepositoryMock implements MovieRepositoryPort {
         let result = this.movies.filter((m) => {
             if (genre && m.getGenre() !== genre) return false;
             if (rating && m.getRating() !== rating) return false;
+            if (m.isDeleted()) return false;
             return true;
         });
 
