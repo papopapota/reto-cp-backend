@@ -1,5 +1,6 @@
-import { Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpStatus, Post, Query, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/infrastructure/guards';
+import { QueryShowtimeDto } from 'src/showtime/application/dtos';
 import { GetAllShowtimeUseCase } from 'src/showtime/application/use-cases';
 
 @Controller('showtimes')
@@ -9,8 +10,10 @@ export class ShowtimeController {
     ) { }
     @HttpCode(HttpStatus.OK)
     @Get()
-    getShowtimes() {
-        return this.getAllShowtimeUseCase.execute();
+    getShowtimes(
+        @Query() query: QueryShowtimeDto
+    ) {
+        return this.getAllShowtimeUseCase.execute(query);
     }
 
     @UseGuards(JwtAuthGuard)

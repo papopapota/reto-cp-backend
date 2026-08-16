@@ -1,8 +1,10 @@
 import { PrismaService } from "src/prisma/prisma.service";
 import { Showtime } from "src/showtime/domain/entities";
-import { ShowtimeRepositoryPort } from "src/showtime/domain/ports";
+import { ShowtimeFilterOptions, ShowtimeRepositoryPort } from "src/showtime/domain/ports";
 import { ShowtimeMapper } from "../mappers";
 import { Injectable } from "@nestjs/common";
+import { PaginatedResultPort } from "src/common/application/ports";
+import { Prisma } from "@prisma/client";
 
 @Injectable()
 export class PrismaShowtimeRepositoryAdapter implements ShowtimeRepositoryPort {
@@ -15,20 +17,52 @@ export class PrismaShowtimeRepositoryAdapter implements ShowtimeRepositoryPort {
     findById(id: string): Promise<Showtime | null> {
         throw new Error("Method not implemented.");
     }
-    async findAll(): Promise<Showtime[]> {
-        return this.prisma.showtimeModel.findMany({
-            where: {
-                OR: [
-                    { deletedAt: { isSet: false } },
-                    { deletedAt: null }
-                ]
-            },
-            orderBy: {
-                dateTime: 'asc'
+    async findAll(filters: ShowtimeFilterOptions): Promise<PaginatedResultPort<Showtime>> {
+        const { page, limit, movieId, date, minPrice, maxPrice } = filters;
+        const skip = (page - 1) * limit;
+        const where: Prisma.ShowtimeModelWhereInput = {
+            OR: [
+                { deletedAt: { isSet: false } },
+                { deletedAt: null },
+            ],
+        };
+        if (movieId) {
+            where.movieModelId = movieId;
+        }
+        if (minPrice !== undefined || maxPrice !== undefined) {
+            where.price = {
+                ...(minPrice !== undefined ? { gte: minPrice } : {}),
+                ...(maxPrice !== undefined ? { lte: maxPrice } : {}),
+            };
+        }
+        if (date) {
+            const startOfDay = new Date(`${date}T00:00:00.000Z`);
+            const endOfDay = new Date(`${date}T23:59:59.999Z`);
+            where.dateTime = {
+                gte: startOfDay,
+                lte: endOfDay,
+            };
+        }
+        const [total, showtimes] = await Promise.all([
+            this.prisma.showtimeModel.count({ where }),
+            this.prisma.showtimeModel.findMany({
+                where,
+                skip,
+                take: limit,
+                orderBy: { dateTime: 'asc' },
+            }),
+        ]);
+        return {
+            data: showtimes.map(ShowtimeMapper.toDomain),
+            meta: {
+                total,
+                page,
+                limit,
+                totalPages: Math.ceil(total / limit),
+                hasNextPage: page * limit < total,
+                hasPrevPage: page > 1,
             }
-        }).then((showtimes) => {
-            return showtimes.map((showtime) => ShowtimeMapper.toDomain(showtime));
-        });
+        };
     }
     async findUpcomingByMovieId(movieId: string): Promise<Showtime[]> {
         return this.prisma.showtimeModel.findMany({
