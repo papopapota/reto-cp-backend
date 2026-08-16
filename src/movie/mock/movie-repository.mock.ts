@@ -1,5 +1,5 @@
 import { Movie } from "../domain/entities";
-import { MovieQuery, MovieRepositoryPort, PaginatedResult } from "../domain/ports";
+import { MovieQuery, MovieRepositoryPort, PaginatedResult, UpdateMovieData } from "../domain/ports";
 
 export class MovieRepositoryMock implements MovieRepositoryPort {
     public movies: Movie[] = [];
@@ -21,11 +21,14 @@ export class MovieRepositoryMock implements MovieRepositoryPort {
         return this.movies.find((m) => m.getId() === id) ?? null;
     }
 
-    async update(id: string, movieUpdate: Partial<Movie>): Promise<void> {
+    async update(id: string, updateMovieData: UpdateMovieData): Promise<Movie> {
         const index = this.movies.findIndex((m) => m.getId() === id);
         if (index !== -1) {
-            Object.assign(this.movies[index], movieUpdate);
+            Object.assign(this.movies[index], updateMovieData);
         }
+        return new Promise((resolve) => {
+            resolve(this.movies[index]);
+        });
     }
 
     async delete(id: string): Promise<void> {
