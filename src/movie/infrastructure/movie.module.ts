@@ -20,7 +20,9 @@ import { ShowtimeModule } from 'src/showtime/infrastructure/showtime.module';
   imports: [
     ShowtimeModule
   ],
-  exports: [],
+  exports: [
+    MOVIE_REPOSITORY_PORT
+  ],
   controllers: [MovieController]
 })
 export class MovieModule {}

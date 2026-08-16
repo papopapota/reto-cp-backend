@@ -1,13 +1,35 @@
 import { PaginatedResultPort } from "src/common/application/ports";
 import { Showtime } from "../domain/entities";
-import { ShowtimeFilterOptions, ShowtimeRepositoryPort } from "../domain/ports";
+import { ShowtimeFilterOptions, ShowtimeRepositoryPort, ShowtimeWithMovie } from "../domain/ports";
+import { Movie } from "src/movie/domain/entities";
+import { MovieGenreEnum, MovieRatingEnum } from "src/movie/domain/enums";
 
 export class ShowtimeRepositoryMock implements ShowtimeRepositoryPort {
     private showtimes: Showtime[] = [];
 
-    create(showtime: Showtime): Promise<void> {
+    findOverlappingShowtimes(room: string, startTime: Date, endTime: Date): Promise<ShowtimeWithMovie[]> {
+        const overlappingShowtimes = this.showtimes.filter((st) => {
+            return st.getRoom() === room && st.getDateTime() < endTime && new Date(st.getDateTime().getTime() + (st.getTotalSeats() * 60 * 1000)) > startTime;
+        });
+        const result: ShowtimeWithMovie[] = overlappingShowtimes.map((st) => ({
+            showtime: st,
+            movie: new Movie({
+                id: st.getMovieId(),
+                title: "Mock Movie Title",
+                synopsis: "Mock Movie Synopsis",
+                duration: 120,
+                genre: MovieGenreEnum.ACTION,
+                rating: MovieRatingEnum.PG_13,
+                deletedAt: null,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+            }),
+        }));
+        return Promise.resolve(result);
+    }
+    async create(showtime: Showtime): Promise<Showtime> {
         this.showtimes.push(showtime);
-        return Promise.resolve();
+        return Promise.resolve(showtime);
     }
     findById(id: string): Promise<Showtime | null> {
         const showtime = this.showtimes.find((st) => st.getId() === id);
