@@ -1,8 +1,8 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { MOVIE_REPOSITORY_PORT, type MovieRepositoryPort } from "src/movie/domain/ports";
 import { MovieWithShowtimesResponse } from "../dtos";
-import { DomainException } from "src/common/domain/exceptions/domain.exception";
 import { SHOWTIME_REPOSITORY_PORT, type ShowtimeRepositoryPort } from "src/showtime/domain/ports";
+import { MovieNotFoundException } from "src/movie/domain/exceptions";
 
 @Injectable()
 export class GetMovieWithShowtimeUseCase {
@@ -21,9 +21,8 @@ export class GetMovieWithShowtimeUseCase {
             this.showtimeRepository.findUpcomingByMovieId(movieId)
         ]);
         if (!movie) {
-            throw new DomainException('Movie not found', 'MOVIE_NOT_FOUND', 404);
+            throw new MovieNotFoundException();
         };
-
         return {
             id: movie.getId()!,
             title: movie.getTitle(),
