@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { SHOWTIME_REPOSITORY_PORT } from '../domain/ports';
 import { PrismaShowtimeRepositoryAdapter } from './adapters';
-import { GetAllShowtimeUseCase } from '../application/use-cases';
+import { CreateShowtimeUseCase, GetAllShowtimeUseCase } from '../application/use-cases';
 import { ShowtimeController } from './controllers';
+import { MovieModule } from 'src/movie/infrastructure/movie.module';
 
 @Module({
     providers: [
@@ -10,9 +11,12 @@ import { ShowtimeController } from './controllers';
             provide: SHOWTIME_REPOSITORY_PORT,
             useClass: PrismaShowtimeRepositoryAdapter,
         },
-        GetAllShowtimeUseCase
+        GetAllShowtimeUseCase,
+        CreateShowtimeUseCase
     ],
-    imports: [],
+    imports: [
+        forwardRef(() => MovieModule),
+    ],
     exports: [
         SHOWTIME_REPOSITORY_PORT
     ],
