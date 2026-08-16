@@ -5,7 +5,6 @@ import { CommonModule } from './common/common.module';
 import { UserModule } from './user/infrastructure/user.module';
 import { MovieModule } from './movie/infrastructure/movie.module';
 import { ShowtimeModule } from './showtime/infrastructure/showtime.module';
-import { ShowtimeController } from './showtime/infrastructure/controllers/showtime.controller';
 
 @Module({
   imports: [
@@ -17,8 +16,7 @@ import { ShowtimeController } from './showtime/infrastructure/controllers/showti
     ShowtimeModule
   ],
   controllers: [
-
-  ShowtimeController],
+  ],
   providers: [],
 })
 export class AppModule { }

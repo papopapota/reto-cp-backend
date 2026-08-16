@@ -15,8 +15,20 @@ export class PrismaShowtimeRepositoryAdapter implements ShowtimeRepositoryPort {
     findById(id: string): Promise<Showtime | null> {
         throw new Error("Method not implemented.");
     }
-    findAll(): Promise<Showtime[]> {
-        throw new Error("Method not implemented.");
+    async findAll(): Promise<Showtime[]> {
+        return this.prisma.showtimeModel.findMany({
+            where: {
+                OR: [
+                    { deletedAt: { isSet: false } },
+                    { deletedAt: null }
+                ]
+            },
+            orderBy: {
+                dateTime: 'asc'
+            }
+        }).then((showtimes) => {
+            return showtimes.map((showtime) => ShowtimeMapper.toDomain(showtime));
+        });
     }
     async findUpcomingByMovieId(movieId: string): Promise<Showtime[]> {
         return this.prisma.showtimeModel.findMany({
