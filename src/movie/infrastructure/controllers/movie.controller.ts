@@ -1,12 +1,13 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/infrastructure/guards';
 import { CreateMovieDto, GetMoviesQueryDto } from 'src/movie/application/dtos';
-import { CreateMovieUseCase, GetAllMoviesUseCase } from 'src/movie/application/use-cases';
+import { CreateMovieUseCase, GetAllMoviesUseCase, GetMovieWithShowtimeUseCase } from 'src/movie/application/use-cases';
 
 @Controller('movies')
 export class MovieController {
     constructor(
         private readonly getMoviesUseCase: GetAllMoviesUseCase,
+        private readonly getMovieWithShowtimeUseCase: GetMovieWithShowtimeUseCase,
         private readonly createMovieUseCase: CreateMovieUseCase
     ) { }
 
@@ -27,8 +28,10 @@ export class MovieController {
 
     @HttpCode(HttpStatus.OK)
     @Get(':id')
-    getMovieById() {
-        return "getMovieById";
+    getMovieById(
+        @Param('id') id: string
+    ) {
+        return this.getMovieWithShowtimeUseCase.execute(id);
     }
 
     @HttpCode(HttpStatus.CREATED)
@@ -46,7 +49,7 @@ export class MovieController {
     updateMovie() {
         return "updateMovie";
     }
-    
+
     @HttpCode(HttpStatus.OK)
     @UseGuards(JwtAuthGuard)
     @Delete(':id')
