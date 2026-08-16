@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MovieController } from './controllers';
-import { CreateMovieUseCase, GetAllMoviesUseCase } from '../application/use-cases';
+import { CreateMovieUseCase, GetAllMoviesUseCase, GetMovieWithShowtimeUseCase } from '../application/use-cases';
 import { PrismaMovieRepositoryAdapter } from './adapters';
 import { MOVIE_REPOSITORY_PORT } from '../domain/ports';
+import { ShowtimeModule } from 'src/showtime/infrastructure/showtime.module';
 
 @Module({
   providers: [
@@ -11,9 +12,11 @@ import { MOVIE_REPOSITORY_PORT } from '../domain/ports';
       useClass: PrismaMovieRepositoryAdapter
     },
     GetAllMoviesUseCase,
-    CreateMovieUseCase
+    CreateMovieUseCase,
+    GetMovieWithShowtimeUseCase
   ],
   imports: [
+    ShowtimeModule
   ],
   exports: [],
   controllers: [MovieController]
