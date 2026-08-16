@@ -71,8 +71,24 @@ model ShowtimeModel {
   updatedAt      DateTime  @updatedAt
   deletedAt      DateTime?
 
-  movieModel   MovieModel? @relation(fields: [movieModelId], references: [id])
-  movieModelId String?
+  movieModel    MovieModel?    @relation(fields: [movieModelId], references: [id])
+  movieModelId  String?
+  bookingModels BookingModel[]
 
   @@map("showtimes")
+}
+
+model BookingModel {
+  id            String   @id @default(uuid()) @map("_id")
+  showtimeId    String
+  customerName  String
+  customerEmail String
+  seatsBooked   Int
+  totalPrice    Float
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  showtime ShowtimeModel? @relation(fields: [showtimeId], references: [id])
+
+  @@map("bookings")
 }
