@@ -25,8 +25,10 @@ export class PrismaShowtimeRepositoryAdapter implements ShowtimeRepositoryPort {
                 dateTime: {
                     gte: new Date()
                 },
-                deletedAt: null,
-
+                OR: [
+                    { deletedAt: { isSet: false } },
+                    { deletedAt: null }
+                ]
             },
             orderBy: {
                 dateTime: 'asc'
