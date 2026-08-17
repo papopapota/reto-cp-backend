@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { BookingController } from './controllers';
-import { CreateBookingUseCase } from '../application/use-cases';
-import { BOOKING_REPOSITORY_PORT } from '../application/ports';
+import { CreateBookingUseCase, GetBookingDetailsUseCase } from '../application/use-cases';
+import { BOOKING_REPOSITORY_PORT } from '../domain/ports';
 import { PrismaBookingRepositoryAdapter } from './adapters';
 import { ShowtimeModule } from 'src/showtime/infrastructure/showtime.module';
 
@@ -12,7 +12,8 @@ import { ShowtimeModule } from 'src/showtime/infrastructure/showtime.module';
       provide: BOOKING_REPOSITORY_PORT,
       useClass: PrismaBookingRepositoryAdapter
     },
-    CreateBookingUseCase
+    CreateBookingUseCase,
+    GetBookingDetailsUseCase
   ],
   imports: [
     ShowtimeModule

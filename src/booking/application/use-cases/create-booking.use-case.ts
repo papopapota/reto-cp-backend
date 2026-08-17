@@ -3,7 +3,7 @@ import { SHOWTIME_REPOSITORY_PORT, type ShowtimeRepositoryPort } from 'src/showt
 import { CreateBookingDto } from '../dtos/create-booking.dto';
 import { Booking } from 'src/booking/domain/entities';
 import { InsufficientSeatsException } from 'src/booking/domain/exceptions';
-import { BOOKING_REPOSITORY_PORT, type BookingRepositoryPort } from '../ports';
+import { BOOKING_REPOSITORY_PORT, type BookingRepositoryPort } from '../../domain/ports';
 import { ShowtimeClosedException, ShowtimeNotFoundException } from 'src/showtime/domain/exceptions';
 
 @Injectable()
