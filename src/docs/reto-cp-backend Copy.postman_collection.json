@@ -1,0 +1,1618 @@
+{
+  "info": {
+    "_postman_id": "a1518e75-c3c0-4f14-b4ec-4ac227b2c197",
+    "name": "reto-cp-backend Copy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31519735"
+  },
+  "item": [
+    {
+      "name": "reto-cp-backend",
+      "item": [
+        {
+          "name": "auth",
+          "item": [
+            {
+              "name": "login",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.collectionVariables.set(\"accessToken\", pm.response.json().accessToken);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "email",
+                      "value": "example9@gmail.com"
+                    },
+                    {
+                      "key": "password",
+                      "value": "password123"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{url}}auth/login",
+                  "host": [
+                    "{{url}}auth"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "login",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "email",
+                          "value": "example9@gmail.com"
+                        },
+                        {
+                          "key": "password",
+                          "value": "password123"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{url}}auth/login",
+                      "host": [
+                        "{{url}}auth"
+                      ],
+                      "path": [
+                        "login"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "211",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"d3-5BJPLj3WihRz1CgoAIKE9alqYQw\"",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Mon, 17 Aug 2026 02:17:12 GMT",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTdlODhhNGY5MWFiNGNlMzIzZGE1ZWQiLCJyb2wiOiJ1c2VyIiwiaWF0IjoxNzg2OTMzMDMyLCJleHAiOjE3ODY5MzY2MzJ9.mDJuA0eCGLvdfK1Yz6OEAZZ9aMmpmhwFuhjIoW81Sps\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "register",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": []
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "email",
+                      "value": "example10@gmail.com"
+                    },
+                    {
+                      "key": "password",
+                      "value": "password123"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{url}}auth/register",
+                  "host": [
+                    "{{url}}auth"
+                  ],
+                  "path": [
+                    "register"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "register",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "email",
+                          "value": "example10@gmail.com"
+                        },
+                        {
+                          "key": "password",
+                          "value": "password123"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{url}}auth/register",
+                      "host": [
+                        "{{url}}auth"
+                      ],
+                      "path": [
+                        "register"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "date",
+                      "value": "Sun, 16 Aug 2026 02:42:45 GMT",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "content-type",
+                      "value": "application/json; charset=utf-8",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "etag",
+                      "value": "W/\"99-mESPWWXiQzR+1UgGn660FZ4mBQ4\"",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "rndr-id",
+                      "value": "2de9170a-7628-4c18",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "server",
+                      "value": "cloudflare",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "vary",
+                      "value": "Accept-Encoding",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "x-powered-by",
+                      "value": "Express",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "x-render-origin-server",
+                      "value": "Render",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "cf-cache-status",
+                      "value": "DYNAMIC",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "cf-ray",
+                      "value": "a2bd1661ddeb12b3-LIM",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "alt-svc",
+                      "value": "h3=\":443\"; ma=86400",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"26266020-a911-4c59-85fd-fa1660bcafad\",\n  \"email\": \"example10@gmail.com\",\n  \"createdAt\": \"2026-08-16T02:42:45.034Z\",\n  \"updatedAt\": \"2026-08-16T02:42:45.034Z\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "movies",
+          "item": [
+            {
+              "name": "delete",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": []
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}movies/{{movieId}}",
+                  "host": [
+                    "{{url}}movies"
+                  ],
+                  "path": [
+                    "{{movieId}}"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "delete",
+                  "originalRequest": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{accessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{url}}movies/{{movieId}}",
+                      "host": [
+                        "{{url}}movies"
+                      ],
+                      "path": [
+                        "{{movieId}}"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "93",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"5d-0onu4FzzY9duLVJSUR1UuJ7mzbs\"",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sun, 16 Aug 2026 15:19:07 GMT",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"message\": \"Pelicula con el ID f203255d-4fd6-4ace-a958-ef7bb48171dd eliminada correctamente\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "get movies",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true,
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": []
+                },
+                "url": {
+                  "raw": "{{url}}movies/",
+                  "host": [
+                    "{{url}}movies"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1",
+                      "disabled": true
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10",
+                      "disabled": true
+                    },
+                    {
+                      "key": "genre",
+                      "value": "ACTION",
+                      "disabled": true
+                    },
+                    {
+                      "key": "rating",
+                      "value": "PG",
+                      "disabled": true
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "createdAt",
+                      "disabled": true
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "desc",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "get movies",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{url}}movies//",
+                      "host": [
+                        "{{url}}movies"
+                      ],
+                      "path": [
+                        "",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1",
+                          "disabled": true
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10",
+                          "disabled": true
+                        },
+                        {
+                          "key": "genre",
+                          "value": "ACTION",
+                          "disabled": true
+                        },
+                        {
+                          "key": "rating",
+                          "value": "PG",
+                          "disabled": true
+                        },
+                        {
+                          "key": "sortBy",
+                          "value": "createdAt",
+                          "disabled": true
+                        },
+                        {
+                          "key": "sortOrder",
+                          "value": "desc",
+                          "disabled": true
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "3658",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"e4a-7MH/hWiiAOBzuYBlrIEVgBUKFnM\"",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sun, 16 Aug 2026 02:25:04 GMT",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"9cf4bd08-5f01-4d74-835d-6af7b243dbc5\",\n      \"title\": \"Spirited Away\",\n      \"synopsis\": \"Una niña de diez años queda atrapada en un mundo misterioso habitado por espíritus, monstruos y hechiceros tras la transformación de sus padres.\",\n      \"duration\": 125,\n      \"rating\": \"PG\",\n      \"deletedAt\": null,\n      \"createdAt\": \"2026-08-16T02:24:20.236Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.236Z\"\n    },\n    {\n      \"id\": \"e8607b0d-a57a-4fa1-b612-032dea1be647\",\n      \"title\": \"The Dark Knight\",\n      \"synopsis\": \"Batman enfrenta su mayor desafío psicológico y físico cuando el Joker desata el caos y la anarquía en Gotham City.\",\n      \"duration\": 152,\n      \"genre\": \"ACTION\",\n      \"rating\": \"PG-13\",\n      \"deletedAt\": null,\n      \"createdAt\": \"2026-08-16T02:24:20.236Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.236Z\"\n    },\n    {\n      \"id\": \"e39b1ee4-a5d6-4b53-bcf1-69001abb74d6\",\n      \"title\": \"Inception\",\n      \"synopsis\": \"Un ladron habilidoso en el arte de la extraccion debe realizar la tarea inversa de implantar una idea en la mente de un objetivo corporativo.\",\n      \"duration\": 148,\n      \"rating\": \"PG-13\",\n      \"deletedAt\": null,\n      \"createdAt\": \"2026-08-16T02:24:20.236Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.236Z\"\n    },\n    {\n      \"id\": \"c55c7982-a1e0-47c8-bfa2-39a00b744193\",\n      \"title\": \"Pulp Fiction\",\n      \"synopsis\": \"Las vidas de dos asesinos a sueldo, un boxeador y la esposa de un gánster se entrelazan en cuatro historias de violencia y redención.\",\n      \"duration\": 154,\n      \"rating\": \"R\",\n      \"deletedAt\": null,\n      \"createdAt\": \"2026-08-16T02:24:20.236Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.236Z\"\n    },\n    {\n      \"id\": \"d6c60187-006f-47a6-bd58-e6902bc4cc34\",\n      \"title\": \"Dragon Ball Super: Broly\",\n      \"synopsis\": \"Goku y Vegeta se enfrentan a Broly, un poderoso guerrero saiyajin con un nivel de poder destructivo e incontrolable.\",\n      \"duration\": 100,\n      \"genre\": \"ACTION\",\n      \"rating\": \"PG\",\n      \"deletedAt\": null,\n      \"createdAt\": \"2026-08-16T02:24:20.236Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.236Z\"\n    },\n    {\n      \"id\": \"b9fa163a-ccde-4d99-b215-75c2adb5e7a0\",\n      \"title\": \"The Matrix\",\n      \"synopsis\": \"Un hacker descubre la verdadera naturaleza de la realidad y su papel central en la guerra contra los controladores del mundo simulado.\",\n      \"duration\": 136,\n      \"rating\": \"R\",\n      \"deletedAt\": null,\n      \"createdAt\": \"2026-08-16T02:24:20.236Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.236Z\"\n    },\n    {\n      \"id\": \"f203255d-4fd6-4ace-a958-ef7bb48171dd\",\n      \"title\": \"The Lord of the Rings: The Fellowship of the Ring\",\n      \"synopsis\": \"Un timido hobbit y ocho companeros emprenden un peligroso viaje para destruir un anillo poderoso y salvar la Tierra Media del Señor Oscuro.\",\n      \"duration\": 178,\n      \"rating\": \"PG-13\",\n      \"deletedAt\": null,\n      \"createdAt\": \"2026-08-16T02:24:20.236Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.236Z\"\n    },\n    {\n      \"id\": \"6a2dda7b-8c47-41aa-89fe-82167daca9c9\",\n      \"title\": \"Spider-Man: Into the Spider-Verse\",\n      \"synopsis\": \"El joven Miles Morales se convierte en el nuevo Spider-Man y une fuerzas con versiones de otras dimensiones para detener una amenaza global.\",\n      \"duration\": 117,\n      \"rating\": \"PG\",\n      \"deletedAt\": null,\n      \"createdAt\": \"2026-08-16T02:24:20.236Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.236Z\"\n    },\n    {\n      \"id\": \"0c2a0888-daf9-466c-9503-eee1c5a34536\",\n      \"title\": \"Gladiator\",\n      \"synopsis\": \"Un antiguo general romano traicionado busca venganza contra el corrupto emperador que asesino a su familia y lo envio a la esclavitud.\",\n      \"duration\": 155,\n      \"genre\": \"ACTION\",\n      \"rating\": \"R\",\n      \"deletedAt\": null,\n      \"createdAt\": \"2026-08-16T02:24:20.236Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.236Z\"\n    },\n    {\n      \"id\": \"97bfc91a-3329-49a0-9c6d-90282254262e\",\n      \"title\": \"Interstellar\",\n      \"synopsis\": \"Un equipo de exploradores viaja a través de un agujero de gusano en el espacio en un intento desesperado por asegurar la supervivencia de la humanidad.\",\n      \"duration\": 169,\n      \"rating\": \"PG-13\",\n      \"deletedAt\": null,\n      \"createdAt\": \"2026-08-16T02:24:20.236Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.236Z\"\n    }\n  ],\n  \"meta\": {\n    \"total\": 25,\n    \"page\": 1,\n    \"limit\": 10,\n    \"totalPages\": 3,\n    \"hasNextPage\": true,\n    \"hasPrevPage\": false\n  }\n}"
+                }
+              ]
+            },
+            {
+              "name": "create",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.collectionVariables.set(\"movieId\", pm.response.json().id);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"Dragon ball\",\n  \"synopsis\": \"Dragon ball\",\n  \"duration\": 120,\n  \"genre\": \"ACTION\",\n  \"rating\": \"PG\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}movies/",
+                  "host": [
+                    "{{url}}movies"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "create",
+                  "originalRequest": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{accessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"Dragon ball\",\n  \"synopsis\": \"Dragon ball\",\n  \"duration\": 120,\n  \"genre\": \"ACTION\",\n  \"rating\": \"PG\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{url}}movies//",
+                      "host": [
+                        "{{url}}movies"
+                      ],
+                      "path": [
+                        "",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "233",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"e9-j2fGQVspyYlNL2HsyWN3mN8pGDY\"",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sun, 16 Aug 2026 18:11:27 GMT",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"4b416ed0-a329-4b31-9905-d098f65d9f8a\",\n  \"title\": \"Dragon ball\",\n  \"synopsis\": \"Dragon ball\",\n  \"duration\": 120,\n  \"genre\": \"ACTION\",\n  \"rating\": \"PG\",\n  \"deletedAt\": null,\n  \"createdAt\": \"2026-08-16T18:11:27.443Z\",\n  \"updatedAt\": \"2026-08-16T18:11:27.443Z\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "get movie",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": []
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true,
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": []
+                },
+                "url": {
+                  "raw": "{{url}}movies/{{movieId}}",
+                  "host": [
+                    "{{url}}movies"
+                  ],
+                  "path": [
+                    "{{movieId}}"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "get movie",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{url}}movies/{{movieId}}",
+                      "host": [
+                        "{{url}}movies"
+                      ],
+                      "path": [
+                        "{{movieId}}"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "118",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"76-OYVPBbU+C7NNOk+mFuvxJ9eEy+Y\"",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sun, 16 Aug 2026 18:11:23 GMT",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"statusCode\": 404,\n  \"code\": \"MOVIE_NOT_FOUND\",\n  \"message\": \"Película no encontrada\",\n  \"timestamp\": \"2026-08-16T18:11:23.390Z\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "update",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"title\": \"Dragon ball 2\",\n  \"synopsis\": \"Dragon ball freezer\",\n  \"duration\": 120,\n  \"genre\": \"ACTION\",\n  \"rating\": \"PG\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}movies/{{movieId}}",
+                  "host": [
+                    "{{url}}movies"
+                  ],
+                  "path": [
+                    "{{movieId}}"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "update",
+                  "originalRequest": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{accessToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n\t\"title\": \"Dragon ball 2\",\n  \"synopsis\": \"Dragon ball freezer\",\n  \"duration\": 120,\n  \"genre\": \"ACTION\",\n  \"rating\": \"PG\"\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{url}}movies/{{ _.movieId }}",
+                      "host": [
+                        "{{url}}movies"
+                      ],
+                      "path": [
+                        "{{ _.movieId }}"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "243",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"f3-XCuYaQWd/SKR3DPU7kLrRFPidj0\"",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sun, 16 Aug 2026 14:26:17 GMT",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"f203255d-4fd6-4ace-a958-ef7bb48171dd\",\n  \"title\": \"Dragon ball 2\",\n  \"synopsis\": \"Dragon ball freezer\",\n  \"duration\": 120,\n  \"genre\": \"ACTION\",\n  \"rating\": \"PG\",\n  \"deletedAt\": null,\n  \"createdAt\": \"2026-08-16T02:24:20.236Z\",\n  \"updatedAt\": \"2026-08-16T14:26:17.496Z\"\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "bookings",
+          "item": [
+            {
+              "name": "create",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.collectionVariables.set(\"bookingId\", pm.response.json().id);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"showtimeId\":\"{{showtimeId}}\",\n\t\"customerName\":\"Jhon\",\n\t\"customerEmail\":\"jhon@gmail.com\",\n\t\"seatsBooked\":1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}bookings/",
+                  "host": [
+                    "{{url}}bookings"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "create",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n\t\"showtimeId\":\"{{ _.showtimeId }}\",\n\t\"customerName\":\"Jhon\",\n\t\"customerEmail\":\"jhon@gmail.com\",\n\t\"seatsBooked\":100\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{ _.url }}bookings/",
+                      "host": [
+                        "{{ _.url }}bookings"
+                      ],
+                      "path": [
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "266",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"10a-Bvysj/Zeqy/80OyLVXWO+vkyiRs\"",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Mon, 17 Aug 2026 02:19:24 GMT",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"3f581c8c-2a59-4c38-bb28-f82013f6a93f\",\n  \"showtimeId\": \"e9f3bfce-bd06-46bd-83a8-288472d84052\",\n  \"customerName\": \"Jhon\",\n  \"customerEmail\": \"jhon@gmail.com\",\n  \"seatsBooked\": 100,\n  \"totalPrice\": 5000,\n  \"createdAt\": \"2026-08-17T02:19:24.066Z\",\n  \"updatedAt\": \"2026-08-17T02:19:24.066Z\"\n}"
+                }
+              ]
+            },
+            {
+              "name": "getById",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": []
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{ _.url }}bookings/{{_.bookingId}}",
+                  "host": [
+                    "{{ _.url }}bookings"
+                  ],
+                  "path": [
+                    "{{_.bookingId}}"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "getById",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{ _.url }}bookings/{{_.bookingId}}",
+                      "host": [
+                        "{{ _.url }}bookings"
+                      ],
+                      "path": [
+                        "{{_.bookingId}}"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "520",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"208-YuePw3VgH32EvnSawW2JPYzfYK0\"",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Mon, 17 Aug 2026 02:19:28 GMT",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"booking\": {\n    \"id\": \"3f581c8c-2a59-4c38-bb28-f82013f6a93f\",\n    \"showtimeId\": \"e9f3bfce-bd06-46bd-83a8-288472d84052\",\n    \"customerName\": \"Jhon\",\n    \"customerEmail\": \"jhon@gmail.com\",\n    \"seatsBooked\": 100,\n    \"totalPrice\": 5000,\n    \"createdAt\": \"2026-08-17T02:19:24.066Z\",\n    \"updatedAt\": \"2026-08-17T02:19:24.066Z\"\n  },\n  \"showtime\": {\n    \"id\": \"e9f3bfce-bd06-46bd-83a8-288472d84052\",\n    \"room\": \"IMAX\",\n    \"dateTime\": \"2026-08-29T20:30:00.000Z\",\n    \"price\": 50\n  },\n  \"movie\": {\n    \"id\": \"4b416ed0-a329-4b31-9905-d098f65d9f8a\",\n    \"title\": \"Dragon ball\",\n    \"duration\": 120,\n    \"genre\": \"ACTION\",\n    \"rating\": \"PG\"\n  }\n}"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "showtimes",
+          "item": [
+            {
+              "name": "create",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.collectionVariables.set(\"showtimeId\", pm.response.json().id);"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{accessToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"movieId\": \"{{movieId}}\",\n\t\"room\": \"IMAX\",\n\t\"dateTime\":\"2026-08-30T12:30:00-05:00\",\n\t\"price\":50,\n\t\"totalSeats\":100\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}showtimes/",
+                  "host": [
+                    "{{url}}showtimes"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "create",
+                  "originalRequest": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{ _.accessToken }}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n\t\"movieId\": \"{{ _.movieId }}\",\n\t\"room\": \"IMAX\",\n\t\"dateTime\":\"2026-08-29T15:30:00-05:00\",\n\t\"price\":50,\n\t\"totalSeats\":100\n}",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{ _.url }}showtimes/",
+                      "host": [
+                        "{{ _.url }}showtimes"
+                      ],
+                      "path": [
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "290",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"122-/EOb33nudn06huMPVnKk3AS53PU\"",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Mon, 17 Aug 2026 02:19:21 GMT",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"id\": \"e9f3bfce-bd06-46bd-83a8-288472d84052\",\n  \"movieId\": \"4b416ed0-a329-4b31-9905-d098f65d9f8a\",\n  \"room\": \"IMAX\",\n  \"dateTime\": \"2026-08-29T20:30:00.000Z\",\n  \"price\": 50,\n  \"totalSeats\": 100,\n  \"availableSeats\": 100,\n  \"createdAt\": \"2026-08-17T02:19:21.861Z\",\n  \"updatedAt\": \"2026-08-17T02:19:21.861Z\",\n  \"deletedAt\": null\n}"
+                }
+              ]
+            },
+            {
+              "name": "get all",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "followRedirects": true,
+                "disableUrlEncoding": false,
+                "disableCookies": false
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{ _.accessToken }}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{url}}showtimes/?date=2026-08-15",
+                  "host": [
+                    "{{url}}showtimes"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "key": "movieId",
+                      "value": "{{movieId}}",
+                      "disabled": true
+                    },
+                    {
+                      "key": "minPrice",
+                      "value": "1",
+                      "disabled": true
+                    },
+                    {
+                      "key": "maxPrice",
+                      "value": "100",
+                      "disabled": true
+                    },
+                    {
+                      "key": "page",
+                      "value": "1",
+                      "disabled": true
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10",
+                      "disabled": true
+                    },
+                    {
+                      "key": "date",
+                      "value": "2026-08-15"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "name": "get all",
+                  "originalRequest": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{ _.accessToken }}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{ _.url }}showtimes/?date=2026-08-15",
+                      "host": [
+                        "{{ _.url }}showtimes"
+                      ],
+                      "path": [
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "key": "movieId",
+                          "value": "{{ _.movieId }}",
+                          "disabled": true
+                        },
+                        {
+                          "key": "minPrice",
+                          "value": "1",
+                          "disabled": true
+                        },
+                        {
+                          "key": "maxPrice",
+                          "value": "100",
+                          "disabled": true
+                        },
+                        {
+                          "key": "page",
+                          "value": "1",
+                          "disabled": true
+                        },
+                        {
+                          "key": "limit",
+                          "value": "10",
+                          "disabled": true
+                        },
+                        {
+                          "key": "date",
+                          "value": "2026-08-15"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "X-Powered-By",
+                      "value": "Express",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json; charset=utf-8",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Content-Length",
+                      "value": "2972",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "ETag",
+                      "value": "W/\"b9c-ZavGFAxg6SzkOIRqUyvdfnuLIHE\"",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Date",
+                      "value": "Sun, 16 Aug 2026 17:29:53 GMT",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Connection",
+                      "value": "keep-alive",
+                      "description": "",
+                      "disabled": false
+                    },
+                    {
+                      "key": "Keep-Alive",
+                      "value": "timeout=5",
+                      "description": "",
+                      "disabled": false
+                    }
+                  ],
+                  "cookie": [],
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"53b0d6a0-4beb-4f0a-9fec-15b2340d698d\",\n      \"movieId\": \"6a7fcb51c13bf8c87c37bec3\",\n      \"room\": \"Sala 1 (2D)\",\n      \"dateTime\": \"2026-08-15T20:30:00.000Z\",\n      \"price\": 22,\n      \"totalSeats\": 100,\n      \"availableSeats\": 100,\n      \"createdAt\": \"2026-08-16T02:24:20.249Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.249Z\",\n      \"deletedAt\": null\n    },\n    {\n      \"id\": \"7bb2fc24-608e-4106-95a6-d92cf9775b5a\",\n      \"movieId\": \"6a7fcb51c13bf8c87c37bec4\",\n      \"room\": \"Sala 2 (3D)\",\n      \"dateTime\": \"2026-08-15T20:30:00.000Z\",\n      \"price\": 28.5,\n      \"totalSeats\": 120,\n      \"availableSeats\": 120,\n      \"createdAt\": \"2026-08-16T02:24:20.249Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.249Z\",\n      \"deletedAt\": null\n    },\n    {\n      \"id\": \"ef7f7030-8e2d-4db1-afff-626feb9b812c\",\n      \"movieId\": \"6a7fcb51c13bf8c87c37bebf\",\n      \"room\": \"Sala 1 (2D)\",\n      \"dateTime\": \"2026-08-15T20:30:00.000Z\",\n      \"price\": 22,\n      \"totalSeats\": 100,\n      \"availableSeats\": 100,\n      \"createdAt\": \"2026-08-16T02:24:20.249Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.249Z\",\n      \"deletedAt\": null\n    },\n    {\n      \"id\": \"afc53085-8735-4da4-b839-9995b6fec78f\",\n      \"movieId\": \"6a7fcb51c13bf8c87c37bec2\",\n      \"room\": \"Sala 4 (VIP)\",\n      \"dateTime\": \"2026-08-15T20:30:00.000Z\",\n      \"price\": 55,\n      \"totalSeats\": 60,\n      \"availableSeats\": 60,\n      \"createdAt\": \"2026-08-16T02:24:20.249Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.249Z\",\n      \"deletedAt\": null\n    },\n    {\n      \"id\": \"0a43eed4-e87a-4282-9bf2-994e56a74d4b\",\n      \"movieId\": \"6a7fcb51c13bf8c87c37bec0\",\n      \"room\": \"Sala 2 (3D)\",\n      \"dateTime\": \"2026-08-15T20:30:00.000Z\",\n      \"price\": 28.5,\n      \"totalSeats\": 120,\n      \"availableSeats\": 120,\n      \"createdAt\": \"2026-08-16T02:24:20.249Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.249Z\",\n      \"deletedAt\": null\n    },\n    {\n      \"id\": \"66e2e1fe-e36e-4e07-8060-ae601b390286\",\n      \"movieId\": \"6a7fcb51c13bf8c87c37bebe\",\n      \"room\": \"Sala 4 (VIP)\",\n      \"dateTime\": \"2026-08-15T20:30:00.000Z\",\n      \"price\": 55,\n      \"totalSeats\": 60,\n      \"availableSeats\": 60,\n      \"createdAt\": \"2026-08-16T02:24:20.249Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.249Z\",\n      \"deletedAt\": null\n    },\n    {\n      \"id\": \"3148aaae-f413-4739-a823-3b59a0b8c8d4\",\n      \"movieId\": \"6a7fcb51c13bf8c87c37bebc\",\n      \"room\": \"Sala 2 (3D)\",\n      \"dateTime\": \"2026-08-15T20:30:00.000Z\",\n      \"price\": 28.5,\n      \"totalSeats\": 120,\n      \"availableSeats\": 120,\n      \"createdAt\": \"2026-08-16T02:24:20.249Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.249Z\",\n      \"deletedAt\": null\n    },\n    {\n      \"id\": \"ad9a1939-f892-4c8b-80e3-5b92bddc3399\",\n      \"movieId\": \"6a7fcb51c13bf8c87c37bebb\",\n      \"room\": \"Sala 1 (2D)\",\n      \"dateTime\": \"2026-08-15T20:30:00.000Z\",\n      \"price\": 22,\n      \"totalSeats\": 100,\n      \"availableSeats\": 100,\n      \"createdAt\": \"2026-08-16T02:24:20.249Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.249Z\",\n      \"deletedAt\": null\n    },\n    {\n      \"id\": \"534d031a-b83c-411e-921d-78addf522cf0\",\n      \"movieId\": \"6a7fcb51c13bf8c87c37bebd\",\n      \"room\": \"Sala 3 (IMAX)\",\n      \"dateTime\": \"2026-08-15T20:30:00.000Z\",\n      \"price\": 42,\n      \"totalSeats\": 180,\n      \"availableSeats\": 180,\n      \"createdAt\": \"2026-08-16T02:24:20.249Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.249Z\",\n      \"deletedAt\": null\n    },\n    {\n      \"id\": \"dcf02636-3b2e-4ebd-9cc0-5598d9296b4d\",\n      \"movieId\": \"6a7fcb51c13bf8c87c37bec1\",\n      \"room\": \"Sala 3 (IMAX)\",\n      \"dateTime\": \"2026-08-15T20:30:00.000Z\",\n      \"price\": 42,\n      \"totalSeats\": 180,\n      \"availableSeats\": 180,\n      \"createdAt\": \"2026-08-16T02:24:20.249Z\",\n      \"updatedAt\": \"2026-08-16T02:24:20.249Z\",\n      \"deletedAt\": null\n    }\n  ],\n  \"meta\": {\n    \"total\": 25,\n    \"page\": 1,\n    \"limit\": 10,\n    \"totalPages\": 3,\n    \"hasNextPage\": true,\n    \"hasPrevPage\": false\n  }\n}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "accessToken",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTdlODhhNGY5MWFiNGNlMzIzZGE1ZWQiLCJyb2wiOiJ1c2VyIiwiaWF0IjoxNzg2OTMzMDMyLCJleHAiOjE3ODY5MzY2MzJ9.mDJuA0eCGLvdfK1Yz6OEAZZ9aMmpmhwFuhjIoW81Sps"
+    },
+    {
+      "key": "url",
+      "value": "http://localhost:3000/api/"
+    },
+    {
+      "key": "movieId",
+      "value": "4b416ed0-a329-4b31-9905-d098f65d9f8a"
+    },
+    {
+      "key": "showtimeId",
+      "value": "e9f3bfce-bd06-46bd-83a8-288472d84052"
+    },
+    {
+      "key": "bookingId",
+      "value": "3f581c8c-2a59-4c38-bb28-f82013f6a93f"
+    }
+  ]
+}

@@ -1,0 +1,424 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: reto-cp-backend
+meta:
+  id: wrk_89bda0d6a0494d1ba2f6ba9a48682d7d
+  created: 1786758742423
+  modified: 1786758742423
+  description: ""
+collection:
+  - name: reto-cp-backend
+    meta:
+      id: fld_3a6cf219b6fe44cb897e7b3242645c98
+      created: 1786758742427
+      modified: 1786933163941
+      sortKey: -1786758728943
+      description: ""
+    children:
+      - name: auth
+        meta:
+          id: fld_52b6b26688334857892460a140efe61d
+          created: 1786758742429
+          modified: 1786933032059
+          sortKey: -1786758728942
+          description: ""
+        children:
+          - url: "{{url}}auth/register"
+            name: register
+            meta:
+              id: req_967c9886e85f45e7903fb62ed1784198
+              created: 1786758742432
+              modified: 1786848167742
+              isPrivate: false
+              description: ""
+              sortKey: -1786758728941
+            method: POST
+            body:
+              mimeType: application/x-www-form-urlencoded
+              params:
+                - name: email
+                  value: example10@gmail.com
+                  disabled: false
+                - name: password
+                  value: password123
+                  disabled: false
+            headers:
+              - name: Content-Type
+                value: application/x-www-form-urlencoded
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{url}}auth/login"
+            name: login
+            meta:
+              id: req_48f9d2d80f2a4e48b779eb3215fdb036
+              created: 1786758742434
+              modified: 1786897838115
+              isPrivate: false
+              description: ""
+              sortKey: -1786758728940
+            method: POST
+            body:
+              mimeType: application/x-www-form-urlencoded
+              params:
+                - name: email
+                  value: example9@gmail.com
+                  disabled: false
+                - name: password
+                  value: password123
+                  disabled: false
+            headers:
+              - name: Content-Type
+                value: application/x-www-form-urlencoded
+            scripts:
+              afterResponse: insomnia.collectionVariables.set("accessToken",
+                insomnia.response.json().accessToken);
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: movies
+        meta:
+          id: fld_7e2e126adb2846e89db9541357a303c4
+          created: 1786758742437
+          modified: 1786903887567
+          sortKey: -1786758728939
+          description: ""
+        children:
+          - url: "{{url}}movies/{{movieId}}"
+            name: get movie
+            meta:
+              id: req_e0fbd26664fd47eea4f2934704af0f6f
+              created: 1786758742439
+              modified: 1786847173569
+              isPrivate: false
+              description: ""
+              sortKey: -1786758728938
+            method: GET
+            body:
+              mimeType: application/x-www-form-urlencoded
+            headers:
+              - name: Content-Type
+                value: application/x-www-form-urlencoded
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{url}}movies/"
+            name: get movies
+            meta:
+              id: req_6d372b421e084a88b5e426b00d4b83bd
+              created: 1786758742440
+              modified: 1786899254150
+              isPrivate: false
+              description: ""
+              sortKey: -1786758728937
+            method: GET
+            body:
+              mimeType: application/x-www-form-urlencoded
+            parameters:
+              - name: page
+                value: "1"
+                disabled: true
+              - name: limit
+                value: "10"
+                disabled: true
+              - name: genre
+                value: ACTION
+                disabled: true
+              - name: rating
+                value: PG
+                disabled: true
+              - name: sortBy
+                value: createdAt
+                disabled: true
+              - name: sortOrder
+                value: desc
+                disabled: true
+            headers:
+              - name: Content-Type
+                value: application/x-www-form-urlencoded
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{url}}movies/"
+            name: create
+            meta:
+              id: req_84aa8e180cf649178ceb6bb89c76abf9
+              created: 1786758742443
+              modified: 1786834761609
+              isPrivate: false
+              description: ""
+              sortKey: -1786758728936
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                  "title": "Dragon ball",
+                  "synopsis": "Dragon ball",
+                  "duration": 120,
+                  "genre": "ACTION",
+                  "rating": "PG"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{accessToken}}"
+              prefix: ""
+            scripts:
+              afterResponse: insomnia.collectionVariables.set("movieId",
+                insomnia.response.json().id);
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{url}}movies/{{ _.movieId }}"
+            name: update
+            meta:
+              id: req_e3b448263612408a9c371f45e1e69ca7
+              created: 1786758742445
+              modified: 1786890387405
+              isPrivate: false
+              description: ""
+              sortKey: -1786758728935
+            method: PUT
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"title": "Dragon ball 2",
+                  "synopsis": "Dragon ball freezer",
+                  "duration": 120,
+                  "genre": "ACTION",
+                  "rating": "PG"
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{accessToken}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{url}}movies/{{movieId}}"
+            name: delete
+            meta:
+              id: req_24947e8cd0444ff3a1c5430da1552b05
+              created: 1786758742446
+              modified: 1786893547681
+              isPrivate: false
+              description: ""
+              sortKey: -1786758728934
+            method: DELETE
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{accessToken}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: showtimes
+        meta:
+          id: fld_d698e3ef73cb42c99d65a4c878bdab43
+          created: 1786897733285
+          modified: 1786933161900
+          sortKey: -1786897733285
+          description: ""
+        children:
+          - url: "{{ _.url }}showtimes"
+            name: create
+            meta:
+              id: req_be12d4b0af96401c988d88370177887e
+              created: 1786897747068
+              modified: 1786933160450
+              isPrivate: false
+              description: ""
+              sortKey: -1786897747068
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"movieId": "{{ _.movieId }}",
+                	"room": "IMAX",
+                	"dateTime":"2026-08-29T15:30:00-05:00",
+                	"price":50,
+                	"totalSeats":100
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              token: "{{ _.accessToken }}"
+            scripts:
+              afterResponse: insomnia.collectionVariables.set("showtimeId",
+                insomnia.response.json().id);
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.url }}showtimes"
+            name: get all
+            meta:
+              id: req_ebac7eca82bf4b4aa30b70f47e4b35fd
+              created: 1786897800393
+              modified: 1786920144177
+              isPrivate: false
+              description: ""
+              sortKey: -1786897800393
+            method: GET
+            parameters:
+              - name: movieId
+                value: "{{ _.movieId }}"
+                disabled: true
+              - name: minPrice
+                value: "1"
+                disabled: true
+              - name: maxPrice
+                value: "100"
+                disabled: true
+              - name: page
+                value: "1"
+                disabled: true
+              - name: limit
+                value: "10"
+                disabled: true
+              - name: date
+                value: 2026-08-15
+                description: ""
+                disabled: false
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{ _.accessToken }}"
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: bookings
+        meta:
+          id: fld_d583e053318d4a02a3ed3fe7a5eb568c
+          created: 1786920134943
+          modified: 1786933163942
+          sortKey: -1786920134943
+          description: ""
+        children:
+          - url: "{{ _.url }}bookings/{{_.bookingId}}"
+            name: getById
+            meta:
+              id: req_9fe62e9edc3444b99f2e41e56f5ad5fd
+              created: 1786920137830
+              modified: 1786933150855
+              isPrivate: false
+              description: ""
+              sortKey: -1786920137830
+            method: GET
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{ _.url }}bookings"
+            name: create
+            meta:
+              id: req_08353aa5c6294bf2837143a1e69e467b
+              created: 1786920245707
+              modified: 1786933138587
+              isPrivate: false
+              description: ""
+              sortKey: -1786920245707
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"showtimeId":"{{ _.showtimeId }}",
+                	"customerName":"Jhon",
+                	"customerEmail":"jhon@gmail.com",
+                	"seatsBooked":100
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            scripts:
+              afterResponse: insomnia.collectionVariables.set("bookingId",
+                insomnia.response.json().id);
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_f788a853d7d65675b2f7fa4be11c3cc54fbd1a45
+    created: 1786758742623
+    modified: 1786933163939
+environments:
+  name: Variables
+  meta:
+    id: env_e5e0c16eca1e49d1ba2bf4a5b9403c45
+    created: 1786758742448
+    modified: 1786933163940
+    isPrivate: false
+  data:
+    accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YTdlODhhNGY5MWFiNGNlMzIzZGE1ZWQiLCJyb2wiOiJ1c2VyIiwiaWF0IjoxNzg2OTMzMDMyLCJleHAiOjE3ODY5MzY2MzJ9.mDJuA0eCGLvdfK1Yz6OEAZZ9aMmpmhwFuhjIoW81Sps
+    url: http://localhost:3000/api/
+    movieId: 4b416ed0-a329-4b31-9905-d098f65d9f8a
+    showtimeId: e9f3bfce-bd06-46bd-83a8-288472d84052
+    bookingId: 3f581c8c-2a59-4c38-bb28-f82013f6a93f
