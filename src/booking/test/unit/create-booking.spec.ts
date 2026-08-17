@@ -1,5 +1,5 @@
 import { Test } from "@nestjs/testing";
-import { BOOKING_REPOSITORY_PORT } from "src/booking/application/ports";
+import { BOOKING_REPOSITORY_PORT } from "src/booking/domain/ports";
 import { CreateBookingUseCase } from "src/booking/application/use-cases";
 import { InsufficientSeatsException } from "src/booking/domain/exceptions";
 import { BookingRepositoryMock } from "src/booking/mock";
