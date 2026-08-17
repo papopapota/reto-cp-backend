@@ -2,7 +2,10 @@ import { Inject, Injectable } from "@nestjs/common";
 import { MOVIE_REPOSITORY_PORT, UpdateMovieData, type MovieRepositoryPort } from "src/movie/domain/ports";
 import { UpdateMovieDto } from "../dtos";
 import { MovieNotFoundException } from "src/movie/domain/exceptions";
-
+/**
+ * Caso de uso responsable de actualizar parcialmente los datos de una película existente.
+ * Valida la existencia del recurso antes de persistir los cambios.
+ */
 @Injectable()
 export class UpdateMovieUseCase {
     constructor(
@@ -10,6 +13,14 @@ export class UpdateMovieUseCase {
         private readonly movieRepository: MovieRepositoryPort,
     ) {
     }
+    /**
+   * Ejecuta la actualización parcial de una película en el catálogo.
+   *
+   * @param id - Identificador único de la película.
+   * @param dto - Campos opcionales a modificar (título, sinopsis, duración, género, rating).
+   * @returns La entidad `Movie` actualizada.
+   * @throws {MovieNotFoundException} Si la película no existe en el repositorio.
+   */
     async execute(
         movieId: string,
         dto: UpdateMovieDto

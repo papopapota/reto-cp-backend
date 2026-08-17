@@ -13,6 +13,14 @@ export class GetMovieWithShowtimeUseCase {
         private readonly showtimeRepository: ShowtimeRepositoryPort,
     ) {
     }
+
+    /**
+     * Ejecuta la obtención de una película junto con sus próximos horarios de proyección.
+     *
+     * @param id - Identificador único de la película.
+     * @returns La entidad `Movie` actualizada.
+     * @throws {MovieNotFoundException} Si la película no existe en el repositorio.
+     */
     async execute(
         movieId: string
     ): Promise<MovieWithShowtimesResponse> {

@@ -9,6 +9,13 @@ export class DeleteMovieUseCase {
         private readonly movieRepository: MovieRepositoryPort,
     ) {
     }
+      /**
+     * Ejecuta la eliminación lógica (soft delete) de una película.
+     *
+     * @param id - Identificador único de la película.
+     * @returns mensaje de confirmación de eliminación.
+     * @throws {MovieNotFoundException} Si la película no existe en el repositorio.
+     */
     async execute(
         movieId: string
     ) {
