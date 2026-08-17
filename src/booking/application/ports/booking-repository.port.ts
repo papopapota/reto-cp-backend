@@ -20,7 +20,7 @@ export interface BookingRepositoryPort {
     createWithSeatReservation(
         props: PropsCreateBookingWithSeatsUpdate
     ): Promise<Booking>;
-    getById(id: string): Promise<Booking>;
+    getById(id: string): Promise<Booking | null>;
 }
 
 export const BOOKING_REPOSITORY_PORT = Symbol('BOOKING_REPOSITORY_PORT');

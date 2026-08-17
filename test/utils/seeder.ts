@@ -4,7 +4,7 @@ import { MovieQueryStub } from "src/movie/stub/movie-query.stub";
 import movieJson from "src/prisma/seeds/json/movies.json";
 import { Showtime } from "src/showtime/domain/entities";
 import { ShowtimeRepositoryPort } from "src/showtime/domain/ports";
-import { roomArrayStub } from "src/showtime/stub";
+import { roomArrayStub, ShowtimeFilterStub } from "src/showtime/stub";
 
 export class Seeder {
     constructor(
@@ -47,9 +47,11 @@ export class Seeder {
                     totalSeats: roomConfig.capacity,
                     availableSeats: roomConfig.capacity,
                 });
-                await this.showtimeRepository.create(showtime);
+                await this.showtimeRepository.create(showtime)
             }
         });
+        const allShowtimesCreated = await this.showtimeRepository.findAll(ShowtimeFilterStub());
+        return allShowtimesCreated;
     }
 }
 
