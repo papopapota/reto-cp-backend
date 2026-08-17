@@ -32,10 +32,25 @@ export interface BookingDetails {
     };
 }
 export interface BookingRepositoryPort {
+    /**
+   * Ejecuta una transacción atómica que descuenta los asientos solicitados de la sala
+   * y registra la reserva en una única operación consistente.
+   *
+   * @param props - Parámetros requeridos para la transacción (identificador de función, cantidad de asientos y datos del cliente).
+   * @returns La entidad `Booking` generada y persistida.
+   *
+   * @throws {InsufficientSeatsException} Si al momento de ejecutar la operación atómica los asientos ya no están disponibles.
+   */
     createWithSeatReservation(
         props: PropsCreateBookingWithSeatsUpdate
     ): Promise<Booking>;
     getById(id: string): Promise<Booking | null>;
+    /**
+   * Recupera una reserva por su identificador, resolviendo las relaciones con la función y película asociada.
+   *
+   * @param id - Identificador único de la reserva.
+   * @returns Estructura con la reserva y sus entidades relacionadas, o `null` si no existe.
+   */
     findByIdWithDetails(id: string): Promise<BookingDetails | null>;
 }
 

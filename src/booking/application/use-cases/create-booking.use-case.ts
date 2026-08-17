@@ -14,7 +14,16 @@ export class CreateBookingUseCase {
         @Inject(SHOWTIME_REPOSITORY_PORT)
         private readonly showtimeRepository: ShowtimeRepositoryPort,
     ) { }
-
+    /**
+       * Valida las reglas de negocio y procesa la reserva de forma atómica.
+       *
+       * @param dto - Objeto de transferencia con los datos de compra del usuario.
+       * @returns La entidad `Booking` creada y persistida en base de datos.
+       *
+       * @throws {ShowtimeNotFoundException} Si la función no existe o fue eliminada lógicamente.
+       * @throws {ShowtimeClosedException} Si la fecha de la función es anterior a la fecha actual.
+       * @throws {InsufficientSeatsException} Si la cantidad solicitada supera los asientos disponibles en la sala.
+       */
     async execute(dto: CreateBookingDto): Promise<Booking> {
         const { showtimeId, customerName, customerEmail, seatsBooked } = dto;
         const showtime = await this.showtimeRepository.findById(showtimeId);

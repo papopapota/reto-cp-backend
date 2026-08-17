@@ -9,7 +9,12 @@ export class BookingController {
         private readonly getBookingDetailsUseCase: GetBookingDetailsUseCase
     ) {
     }
-
+    /**
+       * Registra y confirma una nueva reserva de asientos para una función determinada.
+       *
+       * @param createBookingDto - Payload con los datos de la reserva (ID de función, cliente y asientos).
+       * @returns La entidad de la reserva generada con su identificador y precio total calculado.
+       */
     @HttpCode(HttpStatus.CREATED)
     @Post()
     createBooking(
@@ -17,6 +22,13 @@ export class BookingController {
     ) {
         return this.createBookingUseCase.execute(dto);
     }
+
+    /**
+   * Consulta la información detallada de una reserva existente, enriquecida con datos de la función y película.
+   *
+   * @param id - Identificador único de la reserva en formato UUID v4.
+   * @returns Objeto con el detalle completo de la reserva, función asociada y película.
+   */
     @HttpCode(HttpStatus.OK)
     @Get(':id')
     getBookingById(
