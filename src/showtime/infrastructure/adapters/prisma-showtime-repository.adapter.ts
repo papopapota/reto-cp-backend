@@ -45,7 +45,14 @@ export class PrismaShowtimeRepositoryAdapter implements ShowtimeRepositoryPort {
         });
     }
     findById(id: string): Promise<Showtime | null> {
-        throw new Error("Method not implemented.");
+        return this.prisma.showtimeModel.findUnique({
+            where: { id },
+        }).then((showtime) => {
+            if (!showtime) {
+                return null;
+            }
+            return ShowtimeMapper.toDomain(showtime);
+        });
     }
     async findAll(filters: ShowtimeFilterOptions): Promise<PaginatedResultPort<Showtime>> {
         const { page, limit, movieId, date, minPrice, maxPrice } = filters;
