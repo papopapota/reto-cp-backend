@@ -35,7 +35,7 @@ docker compose up --build
 
 ```
 5. La API estará disponible en `http://localhost:3000` (o el puerto configurado en `PORT`).
-6. ejecutar el comando para repoblar la db
+6. ejecutar el comando para repoblar la db (Peliculas y funciones)
 ```
    pnpm exec prisma db seed
 ```
