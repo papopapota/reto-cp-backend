@@ -19,7 +19,8 @@
                   "listen": "test",
                   "script": {
                     "exec": [
-                      "pm.collectionVariables.set(\"accessToken\", pm.response.json().accessToken);"
+                      "pm.collectionVariables.set(\"accessToken\", pm.response.json().accessToken);\r",
+                      "pm.environment.set(\"accessToken\", pm.response.json().accessToken);"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -616,7 +617,8 @@
                   "listen": "test",
                   "script": {
                     "exec": [
-                      "pm.collectionVariables.set(\"movieId\", pm.response.json().id);"
+                      "pm.collectionVariables.set(\"movieId\", pm.response.json().id);\r",
+                      "pm.environment.set(\"movieId\", pm.response.json().id);"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -1032,7 +1034,8 @@
                   "listen": "test",
                   "script": {
                     "exec": [
-                      "pm.collectionVariables.set(\"bookingId\", pm.response.json().id);"
+                      "pm.collectionVariables.set(\"bookingId\", pm.response.json().id);\r",
+                      "pm.environment.set(\"bookingId\", pm.response.json().id);"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -1160,8 +1163,12 @@
                 {
                   "listen": "test",
                   "script": {
+                    "exec": [
+                      ""
+                    ],
                     "type": "text/javascript",
-                    "exec": []
+                    "packages": {},
+                    "requests": {}
                   }
                 }
               ],
@@ -1174,12 +1181,12 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{ _.url }}bookings/{{_.bookingId}}",
+                  "raw": "{{url}}bookings/{{bookingId}}",
                   "host": [
-                    "{{ _.url }}bookings"
+                    "{{url}}bookings"
                   ],
                   "path": [
-                    "{{_.bookingId}}"
+                    "{{bookingId}}"
                   ]
                 }
               },
@@ -1263,7 +1270,8 @@
                   "listen": "test",
                   "script": {
                     "exec": [
-                      "pm.collectionVariables.set(\"showtimeId\", pm.response.json().id);"
+                      "pm.collectionVariables.set(\"showtimeId\", pm.response.json().id);\r",
+                      "pm.environment.set(\"showtimeId\", pm.response.json().id);"
                     ],
                     "type": "text/javascript",
                     "packages": {},
@@ -1296,7 +1304,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n\t\"movieId\": \"{{movieId}}\",\n\t\"room\": \"IMAX\",\n\t\"dateTime\":\"2026-08-30T12:30:00-05:00\",\n\t\"price\":50,\n\t\"totalSeats\":100\n}",
+                  "raw": "{\n\t\"movieId\": \"{{movieId}}\",\n\t\"room\": \"IMAX\",\n\t\"dateTime\":\"2026-08-26T12:30:00-05:00\",\n\t\"price\":50,\n\t\"totalSeats\":100\n}",
                   "options": {
                     "raw": {
                       "language": "json"
