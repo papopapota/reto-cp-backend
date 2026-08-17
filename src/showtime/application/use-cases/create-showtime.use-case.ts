@@ -16,7 +16,17 @@ export class CreateShowtimeUseCase {
         @Inject(MOVIE_REPOSITORY_PORT)
         private readonly movieRepository: MovieRepositoryPort,
     ) { }
-
+    /**
+       * Ejecuta las validaciones de negocio y persiste la nueva función.
+       *
+       * @param dto - Datos de entrada para la creación de la función.
+       * @returns La entidad `Showtime` creada con disponibilidad inicial de asientos completa.
+       *
+       * @throws {MovieNotFoundException} Si el ID de película no corresponde a un registro activo.
+       * @throws {ShowtimePastDateException} Si la fecha/hora proporcionada es anterior al momento de la solicitud.
+       * @throws {ShowtimeOverlapException} Si existe un choque de horarios con otra función en la misma sala
+       * (incluyendo el margen de limpieza de 15 minutos).
+       */
     async execute(dto: CreateShowtimeDto): Promise<Showtime> {
         const movie = await this.movieRepository.findById(dto.movieId);
         if (!movie) {
